@@ -2,58 +2,43 @@
 
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackground.proto"
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
-EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/floors/protos/RectangleArena.proto"
-EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/factory/containers/protos/WoodenBox.proto"
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/robots/gctronic/e-puck/protos/E-puck.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/floors/protos/Floor.proto"
 
 WorldInfo {
   basicTimeStep 16
 }
 Viewpoint {
-  orientation -0.24158814584453187 -0.03442282172039237 0.9697681357583405 3.416221309103453
-  position 1.5299934387042173 0.48847581518920025 1.2219213625345295
+  orientation -0.08943471179205802 0.06973043324675433 0.9935487401259646 1.8234417516894532
+  position 0.6651429030962696 -2.4672511284047003 0.6530539883878393
 }
 TexturedBackground {
 }
 TexturedBackgroundLight {
 }
-RectangleArena {
-  translation -3.88332 1.72689 -7.10543e-15
-  floorSize 1.25 1.25
-  floorTileSize 0.1 0.1
-  wallHeight 0.5
+Floor {
+  size 1 1
 }
-RectangleArena {
-  translation -0.00505691 -0.00572613 0
-  name "rectangle arena(1)"
-  floorSize 2.5 2.5
-  floorTileSize 0.01 0.01
-  wallHeight 0.5
-}
-WoodenBox {
-  translation -0.167601 -0.66318 0.05
-  rotation 0 0 1 -0.523595307179586
-  name "wooden box(3)"
-  size 0.1 0.1 0.1
-}
-WoodenBox {
-  translation 0.424693 -0.429692 0.05
-  rotation 0 0 1 0.261799
-  name "wooden box(2)"
-  size 0.1 0.1 0.1
-}
-WoodenBox {
-  translation 1.19919 -1.19867 0.05
-  name "wooden box(1)"
-  size 0.1 0.1 0.1
-}
-WoodenBox {
-  translation 0.264226 0.235496 0.05
-  rotation 0 0 1 -0.523595307179586
-  size 0.1 0.1 0.1
+Solid {
+  translation 0.2 0 0.2
+  children [
+    Shape {
+      appearance PBRAppearance {
+        roughness 1
+        metalness 0
+      }
+      geometry DEF BALL_GEOMETRY Sphere {
+        radius 0.05
+        subdivision 2
+      }
+    }
+  ]
+  boundingObject USE BALL_GEOMETRY
+  physics Physics {
+  }
 }
 E-puck {
-  translation -0.525322 0.804418 -1.62652e-05
+  translation -0.0798193 -0.0515657 -1.62652e-05
   rotation -0.0007186582386420782 -0.002461045427689925 -0.9999967133874685 0.5682260375953532
   controller "epuck_go_forward"
 }
