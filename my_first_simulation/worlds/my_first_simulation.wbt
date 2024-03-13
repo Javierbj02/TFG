@@ -1,0 +1,63 @@
+#VRML_SIM R2023b utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/floors/protos/RectangleArena.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/factory/containers/protos/WoodenBox.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/robots/gctronic/e-puck/protos/E-puck.proto"
+
+WorldInfo {
+  basicTimeStep 16
+}
+Viewpoint {
+  orientation -0.4197668734639564 -0.06436948770702496 0.9053465308900399 3.417498025217197
+  position 2.598357447099866 1.0802343907401608 3.864903199988246
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+RectangleArena {
+  translation -0.00505691 -0.00572613 0
+  floorSize 2.5 2.5
+  floorTileSize 0.01 0.01
+  wallHeight 0.5
+}
+WoodenBox {
+  translation -0.167601 -0.66318 0.05
+  rotation 0 0 1 -0.523595307179586
+  name "wooden box(3)"
+  size 0.1 0.1 0.1
+}
+WoodenBox {
+  translation 0.644391 -0.0805259 0.05
+  rotation 0 0 1 0.261799
+  name "wooden box(2)"
+  size 0.1 0.1 0.1
+}
+WoodenBox {
+  translation 1.19919 -1.19867 0.05
+  name "wooden box(1)"
+  size 0.1 0.1 0.1
+}
+WoodenBox {
+  translation 0.264226 0.235496 0.05
+  rotation 0 0 1 -0.523595307179586
+  size 0.1 0.1 0.1
+}
+E-puck {
+  hidden position_0_0 1727.237258740135
+  hidden position_0_1 1927.852962282896
+  hidden linearVelocity_0 0.047779584357488566 -0.0296774497927219 1.3166837920173899e-07
+  hidden angularVelocity_0 0.0063176358251936515 0.01018071308595827 0.08774173186733243
+  hidden translation_1 0 0.02599999999999998 0.02
+  hidden rotation_1 0 1 0 5.644484572928381
+  hidden linearVelocity_1 0.04589288763322151 -0.02850457791458433 -4.9271671746410425e-09
+  hidden angularVelocity_1 1.4195460811690752 2.285508421217146 0.08817094680266295
+  hidden translation_2 0 -0.026 0.02
+  hidden rotation_2 0 1 0 5.198258285942526
+  hidden linearVelocity_2 0.04976909265829135 -0.030912087746856047 4.954478145586954e-09
+  hidden angularVelocity_2 1.5512721478264784 2.4975670353390256 0.08825092694446773
+  translation -0.39356112477629224 0.0572347624449847 -3.196804116060471e-05
+  rotation 0.0010356801843613389 0.0035721531785147193 -0.9999930835201937 0.5550870880160516
+}
