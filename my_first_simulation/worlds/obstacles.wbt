@@ -9,8 +9,8 @@ WorldInfo {
   basicTimeStep 16
 }
 Viewpoint {
-  orientation -0.08943471179205802 0.06973043324675433 0.9935487401259646 1.8234417516894532
-  position 0.6651429030962696 -2.4672511284047003 0.6530539883878393
+  orientation 0.15420548087866348 0.659941362618468 -0.7353217442536703 0.6153447451851823
+  position -2.592831708447738 0.9443797967721218 1.936723069390778
 }
 TexturedBackground {
 }
@@ -18,6 +18,70 @@ TexturedBackgroundLight {
 }
 Floor {
   size 1 1
+}
+Solid {
+  translation -0.0136245 -0.547843 0.05
+  children [
+    Shape {
+      appearance PBRAppearance {
+        roughness 1
+        metalness 0
+      }
+      geometry DEF WALL_GEOMETRY Box {
+        size 1 0.1 0.1
+      }
+    }
+  ]
+  name "solid(4)"
+  boundingObject USE WALL_GEOMETRY
+}
+Solid {
+  translation 0.547533 -0.00235418 0.04
+  children [
+    Shape {
+      appearance PBRAppearance {
+        roughness 1
+        metalness 0
+      }
+      geometry DEF WALL_GEOMETRY Box {
+        size 0.1 1 0.1
+      }
+    }
+  ]
+  name "solid(3)"
+  boundingObject USE WALL_GEOMETRY
+}
+Solid {
+  translation -0.0083141 0.550393 0.05
+  children [
+    Shape {
+      appearance PBRAppearance {
+        roughness 1
+        metalness 0
+      }
+      geometry DEF WALL_GEOMETRY Box {
+        size 1 0.1 0.1
+      }
+    }
+  ]
+  name "solid(2)"
+  boundingObject USE WALL_GEOMETRY
+}
+Solid {
+  translation -0.550729 -0.00392113 0.04
+  children [
+    Shape {
+      appearance PBRAppearance {
+        roughness 1
+        metalness 0
+      }
+      geometry DEF WALL_GEOMETRY Box {
+        size 0.1 1 0.1
+      }
+    }
+  ]
+  name "solid(1)"
+  boundingObject USE WALL_GEOMETRY
 }
 Solid {
   translation 0.2 0 0.2
