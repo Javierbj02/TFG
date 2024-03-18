@@ -1,0 +1,44 @@
+#VRML_SIM R2023b utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/floors/protos/RectangleArena.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/robots/sphero/bb8/protos/BB-8.proto"
+
+WorldInfo {
+}
+Viewpoint {
+  orientation -0.21496003156392263 0.3702496858304531 0.9037186259962158 1.142091837668899
+  position -5.810051584306204 -10.755074510986372 6.800059710941464
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+RectangleArena {
+  floorSize 10 10
+}
+DEF BB-8 BB-8 {
+  hidden position_0_0 7.075126542931023e-07
+  hidden position_0_1 1.8226708446545314e-07
+  hidden linearVelocity_0 -0.010251957204383313 -9.205928196047691e-10 -0.0012806719522103992
+  hidden angularVelocity_0 -3.386240535224212e-08 -0.08212416633791683 -6.317808628905051e-06
+  hidden rotation_3 0 0 1 7.077659420393693e-07
+  hidden position_3_0 2.0682471925663702e-07
+  hidden linearVelocity_3 -0.02052186430867771 3.6686823118226475e-11 -0.00123144497256691
+  hidden angularVelocity_3 -1.9600193321661502e-11 -0.0821208252190786 1.8829619598021074e-06
+  hidden rotation_4 0 1 0 2.0647654623614288e-07
+  hidden linearVelocity_4 -0.020527103003481116 2.0783611141897136e-11 -0.001214939872321606
+  hidden angularVelocity_4 -2.3950112951970545e-11 -0.08212243094241804 1.882788959419268e-06
+  hidden rotation_7 0 0 1 1.812804499357409e-07
+  hidden linearVelocity_7 -0.0431023870639276 2.192161510856672e-09 -0.0011765238206299146
+  hidden angularVelocity_7 -2.5167512790215414e-08 -0.08212502426251175 -4.213845028417603e-06
+  translation 2.498847553693289 -2.693979369530741e-11 -0.0417018643054817
+  rotation -2.3799042946037577e-07 0.99999999801748 -6.29681122464321e-05 0.0013482836225287482
+  controller "<none>"
+}
+Robot {
+  name "supervisor"
+  controller "supervisor_controller"
+  supervisor TRUE
+}

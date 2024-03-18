@@ -4,56 +4,250 @@ EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/project
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/floors/protos/RectangleArena.proto"
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/factory/containers/protos/WoodenBox.proto"
-EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/robots/gctronic/e-puck/protos/E-puck.proto"
+EXTERNPROTO "../protos/E-puck.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/apartment_structure/protos/Wall.proto"
 
 WorldInfo {
-  basicTimeStep 16
+  basicTimeStep 64
 }
 Viewpoint {
-  orientation -0.24158814584453187 -0.03442282172039237 0.9697681357583405 3.416221309103453
-  position 1.5299934387042173 0.48847581518920025 1.2219213625345295
+  orientation -0.09027630095421824 0.0019450087722486032 0.9959148590250572 3.0987164590145277
+  position 8.45553277052231 1.1033975834968919 1.7520203151006657
 }
 TexturedBackground {
 }
 TexturedBackgroundLight {
 }
 RectangleArena {
-  translation -3.88332 1.72689 -7.10543e-15
+  translation -6.24404 3.89319 3.55271e-15
   floorSize 1.25 1.25
   floorTileSize 0.1 0.1
   wallHeight 0.5
 }
 RectangleArena {
-  translation -0.00505691 -0.00572613 0
-  name "rectangle arena(1)"
-  floorSize 2.5 2.5
+  translation 0.812 1.75 7.10543e-15
+  name "rectangle arena(2)"
+  floorSize 1.25 1.25
   floorTileSize 0.01 0.01
-  wallHeight 0.5
+  wallThickness 0.125
+  wallHeight 0.05
+}
+RectangleArena {
+  translation -0.812 1.75 7.10543e-15
+  name "rectangle arena(3)"
+  floorSize 1.25 1.25
+  floorTileSize 0.01 0.01
+  wallThickness 0.125
+  wallHeight 0.05
+}
+Solid {
+  translation -1.437 1.155 0
+  children [
+    Shape {
+      geometry Box {
+        size 0.005 0.005 0.2
+      }
+    }
+  ]
+}
+Solid {
+  translation -0.187 1.155 0
+  children [
+    Shape {
+      geometry Box {
+        size 0.005 0.005 0.2
+      }
+    }
+  ]
+  name "solid(3)"
+}
+Solid {
+  translation -0.187 2.405 0
+  children [
+    Shape {
+      geometry Box {
+        size 0.005 0.005 0.2
+      }
+    }
+  ]
+  name "solid(2)"
+}
+Solid {
+  translation 0.107 1.155 0
+  children [
+    Shape {
+      geometry Box {
+        size 0.005 0.005 0.2
+      }
+    }
+  ]
+  name "solid(4)"
+}
+Solid {
+  translation 1.357 2.405 0
+  children [
+    Shape {
+      geometry Box {
+        size 0.005 0.005 0.2
+      }
+    }
+  ]
+  name "solid(6)"
+}
+Solid {
+  translation 1.357 1.155 0
+  children [
+    Shape {
+      geometry Box {
+        size 0.005 0.005 0.2
+      }
+    }
+  ]
+  name "solid(7)"
+}
+Solid {
+  translation 0.107 2.405 0
+  children [
+    Shape {
+      geometry Box {
+        size 0.005 0.005 0.2
+      }
+    }
+  ]
+  name "solid(5)"
+}
+Solid {
+  translation -1.437 2.405 0
+  children [
+    Shape {
+      geometry Box {
+        size 0.005 0.005 0.2
+      }
+    }
+  ]
+  name "solid(1)"
+}
+Solid {
+  translation -1.437 4.029 0
+  children [
+    Shape {
+      geometry Box {
+        size 0.005 0.005 0.2
+      }
+    }
+  ]
+  name "solid(8)"
+}
+Solid {
+  translation -1.437 2.779 0
+  children [
+    Shape {
+      geometry Box {
+        size 0.005 0.005 0.2
+      }
+    }
+  ]
+  name "solid(9)"
+}
+Solid {
+  translation -0.187 2.779 0
+  children [
+    Shape {
+      geometry Box {
+        size 0.005 0.005 0.2
+      }
+    }
+  ]
+  name "solid(10)"
+}
+Solid {
+  translation 0.107 2.779 0
+  children [
+    Shape {
+      geometry Box {
+        size 0.005 0.005 0.2
+      }
+    }
+  ]
+  name "solid(12)"
+}
+Solid {
+  translation 0.107 4.029 0
+  children [
+    Shape {
+      geometry Box {
+        size 0.005 0.005 0.2
+      }
+    }
+  ]
+  name "solid(13)"
+}
+Solid {
+  translation 1.357 4.029 0
+  children [
+    Shape {
+      geometry Box {
+        size 0.005 0.005 0.2
+      }
+    }
+  ]
+  name "solid(14)"
+}
+Solid {
+  translation 1.357 2.779 0
+  children [
+    Shape {
+      geometry Box {
+        size 0.005 0.005 0.2
+      }
+    }
+  ]
+  name "solid(15)"
+}
+Solid {
+  translation -0.187 4.029 0
+  children [
+    Shape {
+      geometry Box {
+        size 0.005 0.005 0.2
+      }
+    }
+  ]
+  name "solid(11)"
+}
+RectangleArena {
+  translation 0.812 3.295 7.10543e-15
+  name "rectangle arena(1)"
+  floorSize 1.25 1.25
+  floorTileSize 0.01 0.01
+  wallThickness 0.125
+  wallHeight 0.05
+}
+RectangleArena {
+  translation -0.812 3.295 7.10543e-15
+  name "rectangle arena(4)"
+  floorSize 1.25 1.25
+  floorTileSize 0.01 0.01
+  wallThickness 0.125
+  wallHeight 0.05
 }
 WoodenBox {
-  translation -0.167601 -0.66318 0.05
-  rotation 0 0 1 -0.523595307179586
-  name "wooden box(3)"
-  size 0.1 0.1 0.1
-}
-WoodenBox {
-  translation 0.424693 -0.429692 0.05
-  rotation 0 0 1 0.261799
+  translation -1.78164 0.823477 0.05
   name "wooden box(2)"
-  size 0.1 0.1 0.1
+  size 0.01 0.01 0.1
 }
-WoodenBox {
-  translation 1.19919 -1.19867 0.05
-  name "wooden box(1)"
-  size 0.1 0.1 0.1
+DEF EPUCK E-puck {
+  translation -0.647559 3.7033 -6.6472e-05
+  rotation -0.004405583848793512 -0.0022769987537296903 -0.9999877029782049 0.3068212276624856
+  controller "epuck_avoid_collision_javier"
+  controllerArgs [
+    ""
+  ]
+  supervisor TRUE
+  version "2"
 }
-WoodenBox {
-  translation 0.264226 0.235496 0.05
-  rotation 0 0 1 -0.523595307179586
-  size 0.1 0.1 0.1
-}
-E-puck {
-  translation -0.525322 0.804418 -1.62652e-05
-  rotation -0.0007186582386420782 -0.002461045427689925 -0.9999967133874685 0.5682260375953532
-  controller "epuck_go_forward"
+Wall {
+  translation 0 -0.05 1
+  name "wall(3)"
+  size 4.41 0.1 0.1
 }
