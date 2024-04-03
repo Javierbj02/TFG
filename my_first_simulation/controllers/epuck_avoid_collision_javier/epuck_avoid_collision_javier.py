@@ -5,7 +5,7 @@
 from controller import Robot, DistanceSensor, Motor, Supervisor
 
 TIME_STEP = 16
-MAX_SPEED = 6.28
+MAX_SPEED = 2
 
 # create the Robot instance.
 robot = Supervisor()
@@ -65,8 +65,10 @@ while robot.step(TIME_STEP) != -1:
         leftSpeed = -0.5 * MAX_SPEED
         rightSpeed = 0.5 * MAX_SPEED
         
-    leftMotor.setVelocity(leftSpeed)
-    rightMotor.setVelocity(rightSpeed)
+    #leftMotor.setVelocity(leftSpeed)
+    #rightMotor.setVelocity(rightSpeed)
+    leftMotor.setVelocity(0.0)
+    rightMotor.setVelocity(0.0)
     
     
     # Position X and Y of the robot in the world from translate field
