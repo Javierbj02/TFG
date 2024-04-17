@@ -104,7 +104,7 @@ class RobotController:
         return (uno + dos) ** 0.5
     
     @time
-    def getReading(self, folder, scenario, num_antenas, real_position, noise, models_dir):
+    def getReading(self, folder, scenario, num_antenas, real_position, noise, models_dir, image_model):
         """
         Reads a dataset file, obtains the data of the position and applies a noise.
         With that data, the model predicts the position of the robot.
@@ -174,11 +174,11 @@ class RobotController:
         pd_concated = pd.concat([data, data_2, data_3, data_4, data_5, mean_data])
         
         pixel = 35
-        image_model = TINTO(problem="regression",pixels=pixel,blur=True)
-        images_folder = "C:/Users/Medion/Desktop/WEBOTS PROYECTOS/TFG/Images/ULA8/"
+        # image_model = TINTO(problem="regression",pixels=pixel,blur=True)
+        images_folder = "C:/Users/Medion/Desktop/WEBOTS PROYECTOS/TFG/Images/ULA8_/"
         if not os.path.exists(images_folder):
             print("Generating images")
-            image_model.generateImages(pd_concated.iloc[:,:-1], images_folder)
+            image_model._TINTO__testAlg(pd_concated.iloc[:,:-1], images_folder)
             
         img_paths = os.path.join(images_folder+"/regression.csv")
         
@@ -245,47 +245,47 @@ class RobotController:
         print("Error test: ", error_test)
         
         
-        #####
+        # #####
         
         
-        # Deactivate conexions of the images layer
-        print("Deactivating images layer")
-        for layer in modelX.layers:
-            if 'conv2d' in layer.name or 'max_pooling2d' in layer.name or 'average_pooling2d' in layer.name:
-                layer.trainable = False
+        # # Deactivate conexions of the images layer
+        # print("Deactivating images layer")
+        # for layer in modelX.layers:
+        #     if 'conv2d' in layer.name or 'max_pooling2d' in layer.name or 'average_pooling2d' in layer.name:
+        #         layer.trainable = False
         
-        METRICS = [
-            keras.metrics.MeanSquaredError(name = 'mse'),
-            keras.metrics.MeanAbsoluteError(name = 'mae'),
-            #tf.keras.metrics.R2Score(name = 'r2'),
-            RSquare(name='r2_score'),
-            keras.metrics.RootMeanSquaredError(name = 'rmse')
-        ]
+        # METRICS = [
+        #     keras.metrics.MeanSquaredError(name = 'mse'),
+        #     keras.metrics.MeanAbsoluteError(name = 'mae'),
+        #     #tf.keras.metrics.R2Score(name = 'r2'),
+        #     RSquare(name='r2_score'),
+        #     keras.metrics.RootMeanSquaredError(name = 'rmse')
+        # ]
 
-        from keras.optimizers import Adam
-        opt = Adam()
-        modelX.compile(
-            loss="mse",
-            optimizer=opt,
-            metrics = METRICS
-        )
+        # from keras.optimizers import Adam
+        # opt = Adam()
+        # modelX.compile(
+        #     loss="mse",
+        #     optimizer=opt,
+        #     metrics = METRICS
+        # )
         
-        predictionX = modelX.predict([x_num, np.zeros((len(x_num), pixel, pixel, 3))])
-        print(predictionX[0])
+        # predictionX = modelX.predict([x_num, np.zeros((len(x_num), pixel, pixel, 3))])
+        # print(predictionX[0])
         
-        predictionY = modelY.predict([x_num, np.zeros((len(x_num), pixel, pixel, 3))])
-        print(predictionY[0])
+        # predictionY = modelY.predict([x_num, np.zeros((len(x_num), pixel, pixel, 3))])
+        # print(predictionY[0])
         
-        error_test = self.true_dist([predictionX[0][0], predictionY[0][0]], [position[0], position[1]])
-        print("Error test: ", error_test)
+        # error_test = self.true_dist([predictionX[0][0], predictionY[0][0]], [position[0], position[1]])
+        # print("Error test: ", error_test)
     
-        
-    
+import pickle
+image_model = pickle.load(open("C:/Users/Medion/Desktop/WEBOTS PROYECTOS/TFG/Images/Jupyter/image_model.pkl", "rb"))
 robot_controller = RobotController(Supervisor())
 print(robot_controller.get_real_position())
 print("------------------------------------")
 print("Ruta: ", os.getcwd())
-robot_controller.getReading("C:/Users/Medion/Desktop/WEBOTS PROYECTOS/TFG/Data/", "ULA", "8", robot_controller.get_real_position(), None, "C:/Users/Medion/Desktop/WEBOTS PROYECTOS/TFG/Models/ULA 8/")
+robot_controller.getReading("C:/Users/Medion/Desktop/WEBOTS PROYECTOS/TFG/Data/", "ULA", "8", robot_controller.get_real_position(), None, "C:/Users/Medion/Desktop/WEBOTS PROYECTOS/TFG/Models/ULA 8/", image_model)
 
 # while robot_controller.robot.step(TIME_STEP) != -1:
 #     print(robot_controller.get_real_position())
