@@ -1,8 +1,13 @@
 import pandas as pd
 import numpy as np
 
+# cargar un numpy
+arr = np.load("C:/Users/javi2/Desktop/TFG - Webots/TFG/Data/channel_measurement_000000.npy")
+print(arr[0])
+# df = pd.read_csv("C:/Users/javi2/Desktop/TFG - Webots/TFG/Data/ULA_8.csv")
 
-# df = pd.DataFrame(data)
+# # print de df de la primera fila y dos primeras y dos ultimas columnas
+# print(df.iloc[0, [0, 1, -2, -1]])
 
 # print(df)
 # print(df.shape)
@@ -25,18 +30,18 @@ import numpy as np
 # # Guardar un nuevo csv quitando todas las columnas menos las dos últimas y con las primeras 1000 filas
 # df.iloc[:1000, -2:].to_csv("C:/Users/Medion/Desktop/WEBOTS PROYECTOS/TFG/Data/ULA_8_1000.csv", index=False)
 
-arr = np.load("C:/Users/Medion/Desktop/WEBOTS PROYECTOS/TFG/Data/ULA_lab_LoS/user_positions.npy")
+# arr = np.load("C:/Users/Medion/Desktop/WEBOTS PROYECTOS/TFG/Data/ULA_lab_LoS/user_positions.npy")
 # print(arr.shape)
 # print("---")
-elemento = [-1052, 2110, 400]
+# elemento = [-1052, 2110, 400]
 # elemento_2 = [-1437, 1155, 400]
 # elemento_3 = [-1437, 1160, 400]
 
-posicion = np.where((arr == elemento).all(axis=1))
-print(posicion)
-print("---")
-posicion = np.where(np.all(arr == elemento, axis=1))[0][0]
-print(posicion)
+# posicion = np.where((arr == elemento).all(axis=1))
+# print(posicion)
+# print("---")
+# posicion = np.where(np.all(arr == elemento, axis=1))[0][0]
+# print(posicion)
 # print("---")
 # posicion = np.where((arr == elemento_2).all(axis=1))
 # print(posicion)

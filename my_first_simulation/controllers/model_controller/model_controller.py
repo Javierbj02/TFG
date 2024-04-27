@@ -10,6 +10,7 @@ import keras
 from TINTOlib.tinto import TINTO
 from tensorflow_addons.metrics import RSquare
 import cv2
+import shutil
 
 TIME_STEP = 16
 MAX_SPEED = 2
@@ -104,7 +105,7 @@ class RobotController:
         return (uno + dos) ** 0.5
     
     @time
-    def getReading(self, folder, scenario, num_antenas, real_position, noise, models_dir, image_model):
+    def getReading(self, folder, scenario, num_antenas, real_position, noise, models_dir, loaded_model):
         """
         Reads a dataset file, obtains the data of the position and applies a noise.
         With that data, the model predicts the position of the robot.
@@ -122,25 +123,31 @@ class RobotController:
 
         """
         # Read the dataset (the .csv format that we have generated with the measurements of the antennas in numpy) 
-        df = self.load_dataset(folder, scenario, num_antenas) 
+        t0 = time.time()
+        df = self.load_dataset(folder, scenario, num_antenas)
+        print("T0 - Tiempo de carga del dataset: ", time.time() - t0)
+        
 
-        print(df.shape) # 8 atennas: (252004, 1602)
+        #print(df.shape) # 8 atennas: (252004, 1602)
         
         # Obtain the adjusted/normalized/rounded position with respect to the nearest position of the measurements
+        t1 = time.time()
         position = self.round_position(real_position) # Example: [-756.6850000000001, 1803.5]
+        print("T1 - Tiempo de redondeo de la posición: ", time.time() - t1)
 
-        print(position) # Example: [-757, 1805]
+        print("POSICIÓN: ", position) # Example: [-757, 1805]
         
         
         
         # Obtain the data from the dataset that corresponds to the position
-
+        t2 = time.time()
         data = df.loc[(df['PosicionX'] == position[0]) & (df['PosicionY'] == position[1])]
+        print("T2 - Tiempo de obtención de los datos de la posición: ", time.time() - t2)
         # print(data.shape) # (1, 1602)
-        print(data.iloc[:, :2].join(data.iloc[:, -2:])) # 182091 0.305088 1.622033  ... -757 1805
+        # print(data.iloc[:, :2].join(data.iloc[:, -2:])) # 182091 0.305088 1.622033  ... -757 1805
         
         # Apply noise to the data
-        
+        t3 = time.time()
         data_2 = df.loc[(df['PosicionX'] == position[0] - 5) & (df['PosicionY'] == position[1] - 5)]
         data_3 = df.loc[(df['PosicionX'] == position[0] + 5) & (df['PosicionY'] == position[1] + 5)]
         data_4 = df.loc[(df['PosicionX'] == position[0] - 5) & (df['PosicionY'] == position[1] + 5)]
@@ -152,11 +159,13 @@ class RobotController:
         
         mean_data['PosicionX'] = data['PosicionX'].iloc[0]
         mean_data['PosicionY'] = data['PosicionY'].iloc[0]
+
+        print("T3 - Tiempo de aplicación de ruido: ", time.time() - t3)
         
-        print(mean_data)
+        # print(mean_data)
         
         # Normalize the data
-        
+        t4 = time.time()
         columns_to_normalize = mean_data.columns[:-2]
         
         # maximum = df[columns_to_normalize].max()
@@ -167,19 +176,38 @@ class RobotController:
         data_normalized = (mean_data[columns_to_normalize] - minimum) / (maximum - minimum)
         data_normalized = pd.concat([data_normalized, mean_data[mean_data.columns[-2]], mean_data[mean_data.columns[-1]]], axis=1)
         
-        print("-- Data normalized --")
-        print(data_normalized)
+        # print("-- Data normalized --")
+        # print(data_normalized)
         
         # Generate image of the data
         pd_concated = pd.concat([data, data_2, data_3, data_4, data_5, mean_data])
+        print("T4 - Tiempo de normalización de datos: ", time.time() - t4)
         
+        t5 = time.time()
         pixel = 35
-        # image_model = TINTO(problem="regression",pixels=pixel,blur=True)
-        images_folder = "C:/Users/Medion/Desktop/WEBOTS PROYECTOS/TFG/Images/ULA8_/"
-        if not os.path.exists(images_folder):
+
+        #image_model = TINTO(problem="regression",pixels=pixel,blur=True)
+        #images_folder = "C:/Users/javi2/Desktop/TFG - Webots/TFG/Images/ULA8_/"
+        
+        images_folder = "C:/Users/javi2/Desktop/TFG - Webots/TFG/Images/ULA8_Temp/"
+
+        if os.path.exists(images_folder):
+            shutil.rmtree(images_folder)
             print("Generating images")
-            image_model._TINTO__testAlg(pd_concated.iloc[:,:-1], images_folder)
-            
+            loaded_model.generateImages_2(pd_concated.iloc[:,:-1], images_folder)
+        else:
+            print("Generating images")
+            loaded_model.generateImages_2(pd_concated.iloc[:,:-1], images_folder)
+
+        # if os.path.exists(images_folder):
+        #     shutil.rmtree(images_folder)
+        #     print("Generating images")
+        #     loaded_model._TINTO__testAlg(mean_data.iloc[:,:-1], images_folder)
+        # else:
+        #     print("Generating images")
+        #     loaded_model._TINTO__testAlg(mean_data.iloc[:,:-1], images_folder)
+
+    
         img_paths = os.path.join(images_folder+"/regression.csv")
         
         imgs = pd.read_csv(img_paths)
@@ -187,6 +215,8 @@ class RobotController:
         
         imgs["images"] = images_folder + "/" + imgs["images"]
         imgs["images"] = imgs["images"].str.replace("\\","/")
+
+        print("T5 - Tiempo de generación de imágenes: ", time.time() - t5)
 
         
         # # Reset index
@@ -200,6 +230,7 @@ class RobotController:
         
         # x_num = df_x.drop("images",axis=1)
 
+        t6 = time.time()
         x_num = data_normalized.drop("PosicionX",axis=1).drop("PosicionY",axis=1)
         
         image_path = imgs["images"].iloc[0]
@@ -213,28 +244,36 @@ class RobotController:
                 print("Error resizing image")
         else:
             print("Error reading image")
+
+        print("T6 - Tiempo de preparación de los datos para la predicción: ", time.time() - t6)
             
         # x_img = cv2.resize(img, (pixel, pixel))
         
         # TODO: Predict the position of the robot with the data
         
+
+        t7 = time.time()
         modelX = keras.models.load_model(models_dir + "modelX.h5", custom_objects={'RSquare': RSquare})
         modelY = keras.models.load_model(models_dir + "modelY.h5", custom_objects={'RSquare': RSquare})
-        
+        print("T7 - Tiempo de carga de los modelos: ", time.time() - t7)
         
         # # Predict the position of the robot
+        t8 = time.time()
         predictionX = modelX.predict([x_num, x_img])
         print(predictionX[0])
         
         predictionY = modelY.predict([x_num, x_img])
         print(predictionY[0])
+        print("T8 - Tiempo de predicción de la posición X e Y: ", time.time() - t8)
         
-        
+        t9 = time.time()
         error_test = self.true_dist([predictionX[0][0], predictionY[0][0]], [position[0], position[1]])
         print("Error test: ", error_test)
+        print("T9 - Tiempo de cálculo del error: ", time.time() - t9)
         
         
         ######
+        t10 = time.time()
         print("Imagen vacía")
         predictionX = modelX.predict([x_num, np.zeros((len(x_num), pixel, pixel, 3))])
         predictionY = modelY.predict([x_num, np.zeros((len(x_num), pixel, pixel, 3))])
@@ -243,49 +282,17 @@ class RobotController:
         
         error_test = self.true_dist([predictionX[0][0], predictionY[0][0]], [position[0], position[1]])
         print("Error test: ", error_test)
+        print("T10 - Tiempo de predicción +  cálculo del error con imagen vacía: ", time.time() - t10)
         
-        
-        # #####
-        
-        
-        # # Deactivate conexions of the images layer
-        # print("Deactivating images layer")
-        # for layer in modelX.layers:
-        #     if 'conv2d' in layer.name or 'max_pooling2d' in layer.name or 'average_pooling2d' in layer.name:
-        #         layer.trainable = False
-        
-        # METRICS = [
-        #     keras.metrics.MeanSquaredError(name = 'mse'),
-        #     keras.metrics.MeanAbsoluteError(name = 'mae'),
-        #     #tf.keras.metrics.R2Score(name = 'r2'),
-        #     RSquare(name='r2_score'),
-        #     keras.metrics.RootMeanSquaredError(name = 'rmse')
-        # ]
-
-        # from keras.optimizers import Adam
-        # opt = Adam()
-        # modelX.compile(
-        #     loss="mse",
-        #     optimizer=opt,
-        #     metrics = METRICS
-        # )
-        
-        # predictionX = modelX.predict([x_num, np.zeros((len(x_num), pixel, pixel, 3))])
-        # print(predictionX[0])
-        
-        # predictionY = modelY.predict([x_num, np.zeros((len(x_num), pixel, pixel, 3))])
-        # print(predictionY[0])
-        
-        # error_test = self.true_dist([predictionX[0][0], predictionY[0][0]], [position[0], position[1]])
-        # print("Error test: ", error_test)
     
 import pickle
-image_model = pickle.load(open("C:/Users/Medion/Desktop/WEBOTS PROYECTOS/TFG/Images/Jupyter/image_model.pkl", "rb"))
+loaded_model = pickle.load(open("C:/Users/javi2/Desktop/TFG - Webots/TFG/Images/Jupyter/image_model_p.pkl", "rb"))
 robot_controller = RobotController(Supervisor())
 print(robot_controller.get_real_position())
 print("------------------------------------")
 print("Ruta: ", os.getcwd())
-robot_controller.getReading("C:/Users/Medion/Desktop/WEBOTS PROYECTOS/TFG/Data/", "ULA", "8", robot_controller.get_real_position(), None, "C:/Users/Medion/Desktop/WEBOTS PROYECTOS/TFG/Models/ULA 8/", image_model)
+#robot_controller.getReading("C:/Users/Medion/Desktop/WEBOTS PROYECTOS/TFG/Data/", "ULA", "8", robot_controller.get_real_position(), None, "C:/Users/Medion/Desktop/WEBOTS PROYECTOS/TFG/Models/ULA 8/", image_model)
+robot_controller.getReading("C:/Users/javi2/Desktop/TFG - Webots/TFG/Data/", "ULA", "8", robot_controller.get_real_position(), None, "C:/Users/javi2/Desktop/TFG - Webots/TFG/Models/ULA 8/", loaded_model)
 
 # while robot_controller.robot.step(TIME_STEP) != -1:
 #     print(robot_controller.get_real_position())
