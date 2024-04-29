@@ -1,1 +1,3 @@
 In this folder “Models”, we have stored the models with which we make the predictions. For each scenario (ULA, URA or DIS and 8, 16, 32 or 64 antennas), on the one hand, we find a model to predict the X position and another one to predict the Y position, as well as a model to generate the image of the position we are trying to predict.
+
+Because the .h5 models (position models) take up a lot of space, they have been put inside the .gitignore.
