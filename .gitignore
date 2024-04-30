@@ -1,7 +1,6 @@
 /Data/DIS
 /Data/ULA
 /Data/URA
-/Models
 /my_first_simulation/controllers/model_controller/cache
 /my_first_simulation/controllers/model_controller/__pycache__
 /my_first_simulation/controllers/model_controller_ula8/cache
@@ -10,9 +9,14 @@
 /my_first_simulation/controllers/model_controller_ula16/__pycache__
 /my_first_simulation/controllers/model_controller_ula32/cache
 /my_first_simulation/controllers/model_controller_ula32/__pycache__
+/my_first_simulation/controllers/model_controller_ula64/cache
+/my_first_simulation/controllers/model_controller_ula64/__pycache__
 /Models/ULA/ULA 8/modelX.h5
 /Models/ULA/ULA 16/modelX.h5
 /Models/ULA/ULA 32/modelX.h5
 /Models/ULA/ULA 8/modelY.h5
 /Models/ULA/ULA 16/modelY.h5
 /Models/ULA/ULA 32/modelY.h5
+/Models/ULA/ULA 64/modelX.h5
+/Models/ULA/ULA 64/modelY.h5
+/my_first_simulation/controllers/model_controller

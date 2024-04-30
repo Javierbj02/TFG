@@ -17,7 +17,7 @@ cachedir = './cache'
 memory = Memory(location=cachedir, verbose=0)
 
 class RobotController:
-    def __init__(self, robot):
+    def __init__(self, robot, scenario, num_antennas):
         self.robot = robot
         self.left_motor = self.robot.getDevice('left wheel motor')
         self.right_motor = self.robot.getDevice('right wheel motor')
@@ -26,6 +26,10 @@ class RobotController:
         self.left_motor.setVelocity(0.0)
         self.right_motor.setVelocity(0.0)
         self.distance_sensors = self.initialize_distance_sensors()
+        self.scenario = scenario
+        self.num_antennas = num_antennas
+        self.modelX = None
+        self.modelY = None
 
 
     def initialize_distance_sensors(self):
@@ -81,7 +85,6 @@ class RobotController:
     def getMaxMin(df, columns):
         return df[columns].max(), df[columns].min()
     
-    
     def time(funcion):
         def function(*args, **kwargs):
             start = time.time()
@@ -100,17 +103,14 @@ class RobotController:
         return (uno + dos) ** 0.5
     
     @time
-    def getReading(self, folder, scenario, num_antenas, real_position, noise):
+    def getReading(self, folder, real_position):
         """
         Reads a dataset file, obtains the data of the position and applies a noise.
         With that data, the model predicts the position of the robot.
 
         ! Args:
             * folder (str): The main folder where all the needed data is located.
-            * scenario (str): The filename of scenario configuration: ULA, URA, DIS.
-            * num_antenas (str): The number of antennas for that scenario: 8, 16, 32, 64.
             * real_position (list): The real position of the robot. Example: [-758.0246871437575, 1798.9217383115995]
-            ? noise (...): ...
 
         ! Returns:
             ? float: The predicted position of the robot.
@@ -118,7 +118,7 @@ class RobotController:
         """
         # Read the dataset (the .csv format that we have generated with the measurements of the antennas in numpy) 
         t0 = time.time()
-        df = self.load_dataset(folder, scenario, num_antenas)
+        df = self.load_dataset(folder, self.scenario, self.num_antennas)
         print("T0 - Tiempo de carga del dataset: ", time.time() - t0)
         
         
@@ -139,31 +139,40 @@ class RobotController:
         # Apply noise to the data
         # TODO: Optimize this part
 
-        t3 = time.time()
-        data_2 = df.loc[(df['PosicionX'] == position[0] - 5) & (df['PosicionY'] == position[1] - 5)]
-        data_3 = df.loc[(df['PosicionX'] == position[0] + 5) & (df['PosicionY'] == position[1] + 5)]
-        data_4 = df.loc[(df['PosicionX'] == position[0] - 5) & (df['PosicionY'] == position[1] + 5)]
-        data_5 = df.loc[(df['PosicionX'] == position[0] + 5) & (df['PosicionY'] == position[1] - 5)]
+        # t3 = time.time()
+        # data_2 = df.loc[(df['PosicionX'] == position[0] - 5) & (df['PosicionY'] == position[1] - 5)]
+        # data_3 = df.loc[(df['PosicionX'] == position[0] + 5) & (df['PosicionY'] == position[1] + 5)]
+        # data_4 = df.loc[(df['PosicionX'] == position[0] - 5) & (df['PosicionY'] == position[1] + 5)]
+        # data_5 = df.loc[(df['PosicionX'] == position[0] + 5) & (df['PosicionY'] == position[1] - 5)]
         
-        selected_rows = pd.concat([data, data_2, data_3, data_4, data_5])
-        mean_data = selected_rows.iloc[:, :-2].mean()
-        mean_data = pd.DataFrame(mean_data).T
+        # selected_rows = pd.concat([data, data_2, data_3, data_4, data_5])
+        # mean_data = selected_rows.iloc[:, :-2].mean()
+        # mean_data = pd.DataFrame(mean_data).T
         
-        mean_data['PosicionX'] = data['PosicionX'].iloc[0]
-        mean_data['PosicionY'] = data['PosicionY'].iloc[0]
+        # mean_data['PosicionX'] = data['PosicionX'].iloc[0]
+        # mean_data['PosicionY'] = data['PosicionY'].iloc[0]
 
-        print("T3 - Tiempo de aplicación de ruido: ", time.time() - t3)
+        # print("T3 - Tiempo de aplicación de ruido: ", time.time() - t3)
         
-        
+        mean_data = data
         # Normalize the data
-        t4 = time.time()
+        t41 = time.time()
         columns_to_normalize = mean_data.columns[:-2]
         
         # maximum = df[columns_to_normalize].max()
         # minimum = df[columns_to_normalize].min()
+
+        max_min_file = os.path.join(folder + "Models/" + self.scenario + "/" + self.scenario + " " + self.num_antennas + "/max_min.npy")
+
+        if os.path.exists(max_min_file):
+            maximum, minimum = np.load(max_min_file)
+        else:
+            maximum, minimum = self.getMaxMin(df, columns_to_normalize)
+            np.save(max_min_file, [maximum, minimum])
+
+        print("T4.1 - Tiempo de get Max Min: ", time.time() - t41)
         
-        maximum, minimum = self.getMaxMin(df, columns_to_normalize)
-        
+        t4 = time.time()
         data_normalized = (mean_data[columns_to_normalize] - minimum) / (maximum - minimum)
         data_normalized = pd.concat([data_normalized, mean_data[mean_data.columns[-2]], mean_data[mean_data.columns[-1]]], axis=1)
         
@@ -177,8 +186,8 @@ class RobotController:
         #image_model = TINTO(problem="regression",pixels=pixel,blur=True)
 
         #images_dir = "C:/Users/javi2/Desktop/TFG - Webots/TFG/Images/ULA8_Temp/"
-        images_dir = folder + "Images/" + scenario + num_antenas + "_Temp/"
-        loaded_model = pickle.load(open(folder + "Models/" + scenario + "/" + scenario + " " + num_antenas + "/image_model.pkl", "rb"))
+        images_dir = folder + "Images/" + self.scenario + self.num_antennas + "_Temp/"
+        loaded_model = pickle.load(open(folder + "Models/" + self.scenario + "/" + self.scenario + " " + self.num_antennas + "/image_model.pkl", "rb"))
 
         if os.path.exists(images_dir):
             shutil.rmtree(images_dir)
@@ -219,16 +228,18 @@ class RobotController:
 
         t7 = time.time()
 
-        models_dir = folder + "Models/" + scenario + "/" + scenario + " " + num_antenas + "/"
+        models_dir = folder + "Models/" + self.scenario + "/" + self.scenario + " " + self.num_antennas + "/"
 
-        modelX = keras.models.load_model(models_dir + "modelX.h5", custom_objects={'RSquare': RSquare})
-        modelY = keras.models.load_model(models_dir + "modelY.h5", custom_objects={'RSquare': RSquare})
+        if self.modelX is None or self.modelY is None:
+            self.modelX = keras.models.load_model(models_dir + "modelX.h5", custom_objects={'RSquare': RSquare})
+            self.modelY = keras.models.load_model(models_dir + "modelY.h5", custom_objects={'RSquare': RSquare})
+
         print("T7 - Tiempo de carga de los modelos: ", time.time() - t7)
         
         # # Predict the position of the robot
         t8 = time.time()
-        predictionX = modelX.predict([x_num, x_img])
-        predictionY = modelY.predict([x_num, x_img])
+        predictionX = self.modelX.predict([x_num, x_img])
+        predictionY = self.modelY.predict([x_num, x_img])
         print(predictionX[0])
         print(predictionY[0])
         print("T8 - Tiempo de predicción de la posición X e Y: ", time.time() - t8)
@@ -242,8 +253,8 @@ class RobotController:
         ######
         t10 = time.time()
         print("Imagen vacía")
-        predictionX = modelX.predict([x_num, np.zeros((len(x_num), pixel, pixel, 3))])
-        predictionY = modelY.predict([x_num, np.zeros((len(x_num), pixel, pixel, 3))])
+        predictionX = self.modelX.predict([x_num, np.zeros((len(x_num), pixel, pixel, 3))])
+        predictionY = self.modelY.predict([x_num, np.zeros((len(x_num), pixel, pixel, 3))])
         print(predictionX[0])
         print(predictionY[0])
         

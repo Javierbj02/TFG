@@ -1,14 +1,12 @@
 from controller import Supervisor
-import sys
-
 from robot_controller import RobotController
-import pickle
 
-robot_controller = RobotController(Supervisor())
+main_root = "C:/Users/javi2/Desktop/TFG - Webots/TFG/"
+scenario = "ULA"
+num_antennas = "8"
+robot_controller = RobotController(Supervisor(), scenario, num_antennas)
 
 print(robot_controller.get_real_position())
 print("------------------------------------")
 
-main_root = "C:/Users/javi2/Desktop/TFG - Webots/TFG/"
-
-robot_controller.getReading(main_root, "ULA", "8", robot_controller.get_real_position(), None)
+robot_controller.getReading(main_root, robot_controller.get_real_position())
