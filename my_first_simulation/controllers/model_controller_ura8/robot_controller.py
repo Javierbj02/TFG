@@ -105,7 +105,7 @@ class RobotController:
     @time
     def getReading(self, folder, real_position):
         """
-        Reads a dataset file, obtains the data of the position.
+        Reads a dataset file, obtains the data of the position and applies a noise.
         With that data, the model predicts the position of the robot.
 
         ! Args:

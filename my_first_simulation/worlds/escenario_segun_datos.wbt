@@ -11,16 +11,16 @@ WorldInfo {
 }
 Viewpoint {
   orientation -0.4769955237892347 0.4626860402226595 0.7472595924229471 1.8871828840091485
-  position 0.5712023808105964 -1.3159769985527512 5.6463576228049766
+  position 0.6838016304887643 -0.2725124703004358 6.12885030188005
 }
 TexturedBackground {
 }
 TexturedBackgroundLight {
 }
 DEF EPUCK E-puck {
-  translation -0.677143 1.80965 -2.40163e-05
+  translation 0.842 3.379 -2.95099e-05
   rotation 1.053488532344231e-09 -1.5300783008501481e-09 -0.9999999999999999 1.9355730516480805
-  controller "model_controller_ula64"
+  controller "model_controller_ula8"
   supervisor TRUE
   version "2"
 }

@@ -11,6 +11,22 @@
 /my_first_simulation/controllers/model_controller_ula32/__pycache__
 /my_first_simulation/controllers/model_controller_ula64/cache
 /my_first_simulation/controllers/model_controller_ula64/__pycache__
+/my_first_simulation/controllers/model_controller_ura8/cache
+/my_first_simulation/controllers/model_controller_ura8/__pycache__
+/my_first_simulation/controllers/model_controller_ura16/cache
+/my_first_simulation/controllers/model_controller_ura16/__pycache__
+/my_first_simulation/controllers/model_controller_ura32/cache
+/my_first_simulation/controllers/model_controller_ura32/__pycache__
+/my_first_simulation/controllers/model_controller_ura64/cache
+/my_first_simulation/controllers/model_controller_ura64/__pycache__
+/my_first_simulation/controllers/model_controller_dis8/cache
+/my_first_simulation/controllers/model_controller_dis8/__pycache__
+/my_first_simulation/controllers/model_controller_dis16/cache
+/my_first_simulation/controllers/model_controller_dis16/__pycache__
+/my_first_simulation/controllers/model_controller_dis32/cache
+/my_first_simulation/controllers/model_controller_dis32/__pycache__
+/my_first_simulation/controllers/model_controller_dis64/cache
+/my_first_simulation/controllers/model_controller_dis64/__pycache__
 /Models/ULA/ULA 8/modelX.h5
 /Models/ULA/ULA 16/modelX.h5
 /Models/ULA/ULA 32/modelX.h5
@@ -19,4 +35,22 @@
 /Models/ULA/ULA 32/modelY.h5
 /Models/ULA/ULA 64/modelX.h5
 /Models/ULA/ULA 64/modelY.h5
+/Models/URA/URA 8/modelX.h5
+/Models/URA/URA 16/modelX.h5
+/Models/URA/URA 32/modelX.h5
+/Models/URA/URA 8/modelY.h5
+/Models/URA/URA 16/modelY.h5
+/Models/URA/URA 32/modelY.h5
+/Models/URA/URA 64/modelX.h5
+/Models/URA/URA 64/modelY.h5
+/Models/DIS/DIS 8/modelX.h5
+/Models/DIS/DIS 16/modelX.h5
+/Models/DIS/DIS 32/modelX.h5
+/Models/DIS/DIS 8/modelY.h5
+/Models/DIS/DIS 16/modelY.h5
+/Models/DIS/DIS 32/modelY.h5
+/Models/DIS/DIS 64/modelX.h5
+/Models/DIS/DIS 64/modelY.h5
 /my_first_simulation/controllers/model_controller
+/Pruebas
+*.h5
