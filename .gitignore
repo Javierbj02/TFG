@@ -54,3 +54,9 @@
 /my_first_simulation/controllers/model_controller
 /Pruebas
 *.h5
+*__pycache__
+*cache
+*z_Orig
+*z_Extra
+*ULA_32.csv
+*ULA_64.csv
