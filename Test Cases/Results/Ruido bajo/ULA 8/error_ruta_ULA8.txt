@@ -1,0 +1,13 @@
+------------------------------------
+Error ruta para el caso de prueba: Ruido bajo, ULA, 8: 156.92260486623206 mm
+
+Mean Absolute Error (MAE) en X: 67.54159289728986
+Mean Absolute Error (MAE) en Y: 126.9760661995324
+Mean Squared Error (MSE) en X: 7525.517799884981
+Mean Squared Error (MSE) en Y: 25122.170333191643
+Root Mean Squared Error (RMSE) en X: 86.74974236206688
+Root Mean Squared Error (RMSE) en Y: 158.4997486849479
+
+Tiempo de ejecucion: 73.85867381095886 segundos
+------------------------------------
+
