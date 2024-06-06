@@ -118,6 +118,12 @@ class RobotController:
         dos = dos ** 2
         
         return (uno + dos) ** 0.5
+    
+    def total_dist(self, y_pred, y_true):
+        return np.mean(np.sqrt(
+            np.square(np.abs(y_pred[:,0] - y_true[:,0]))
+            + np.square(np.abs(y_pred[:,1] - y_true[:,1]))
+        ))
 
     @time
     def getReading2(self, folder, real_position):
@@ -229,5 +235,7 @@ class RobotController:
         print("Error test: ", error_test)
 
         return [real_position, position, [predictionX[0][0], predictionY[0][0]]]
+    
+
         
 

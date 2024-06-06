@@ -93,9 +93,9 @@ class RobotController:
         return df
     
     @memory.cache
-    def load_dataset_testCases(folder, scenario, num_antennas, radius):
-        root = folder + "Data/Test Cases/" + radius + "/"+ scenario + "_" + num_antennas  + ".csv"
-        df = pd.read_csv(root) # ./Data/ULA/ULA_8.csv for example
+    def load_dataset_testCases(folder, scenario, num_antennas, noise):
+        root = folder + "Data/Test Cases/" + noise + "/"+ scenario + "_" + num_antennas  + ".csv"
+        df = pd.read_csv(root)
         return df
     
     @memory.cache
@@ -118,6 +118,12 @@ class RobotController:
         dos = dos ** 2
         
         return (uno + dos) ** 0.5
+    
+    def total_dist(self, y_pred, y_true):
+        return np.mean(np.sqrt(
+            np.square(np.abs(y_pred[:,0] - y_true[:,0]))
+            + np.square(np.abs(y_pred[:,1] - y_true[:,1]))
+        ))
 
     @time
     def getReading2(self, folder, real_position):
@@ -229,4 +235,7 @@ class RobotController:
         print("Error test: ", error_test)
 
         return [real_position, position, [predictionX[0][0], predictionY[0][0]]]
+    
+
         
+
