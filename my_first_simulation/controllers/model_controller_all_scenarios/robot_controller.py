@@ -186,7 +186,7 @@ class RobotController:
         #image_model = TINTO(problem="regression",pixels=pixel,blur=True)
 
         #images_dir = "C:/Users/javi2/Desktop/TFG - Webots/TFG/Images/ULA8_Temp/"
-        images_dir = folder + "Images/" + self.scenario + self.num_antennas + "_Temp/"
+        images_dir = folder + "Images/model_controller_temp/"
         loaded_model = pickle.load(open(folder + "Models/" + self.scenario + "/" + self.scenario + " " + self.num_antennas + "/image_model.pkl", "rb"))
 
         if os.path.exists(images_dir):
