@@ -19,7 +19,7 @@ TexturedBackgroundLight {
 DEF EPUCK E-puck {
   translation -1.36183 3.94731 -2.95099e-05
   rotation 2.82339e-10 -3.54932e-09 -1 0.7574763061004254
-  controller "TestCase_ula8"
+  controller "TestCase1"
   supervisor TRUE
   version "2"
 }

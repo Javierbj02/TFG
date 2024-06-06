@@ -1,0 +1,45 @@
+ULA 8
+--------------------
+Error medio ruta - datos normales: 154.73385124617545
+Error medio ruta - datos con media 5mm radio (9 datos): 157.14560985914864
+Error medio ruta - datos con media 10mm radio (25 datos):  176.41541540914383
+Error medio ruta - datos con media 50mm radio (441 datos): 1032.6575384477196
+
+Error medio ruta (5mm) - No ruido: 157.14560985914864
+Error medio ruta (5mm) - Ruido bajo: 159.68230048675542
+Error medio ruta (5mm) - Ruido medio: 264.1928586154176
+Error medio ruta (5mm) - Ruido elevado: 864.5876281046752
+
+ULA 16
+--------------------
+Error medio ruta - datos normales: 130.8884867519876
+Error medio ruta - datos con media 5mm radio (9 datos): 123.51221359345709
+Error medio ruta - datos con media 10mm radio (25 datos):  125.44816980896087
+
+Error medio ruta (5mm) - No ruido: 123.51221359345709
+Error medio ruta (5mm) - Ruido bajo:
+Error medio ruta (5mm) - Ruido medio:
+Error medio ruta (5mm) - Ruido elevado:
+
+ULA 32
+--------------------
+Error medio ruta - datos normales: 94.59303978011515
+Error medio ruta - datos con media 5mm radio (9 datos): 85.91861583808087
+Error medio ruta - datos con media 10mm radio (25 datos): 90.77085263714565  
+
+Error medio ruta (5mm) - No ruido: 85.91861583808087
+Error medio ruta (5mm) - Ruido bajo:
+Error medio ruta (5mm) - Ruido medio:
+Error medio ruta (5mm) - Ruido elevado:
+
+ULA 64
+--------------------
+Error medio ruta - datos normales: 44.29492191842324
+Error medio ruta - datos con media 5mm radio (9 datos): 41.03385198819973
+
+Error medio ruta (5mm) - No ruido: 41.03385198819973
+Error medio ruta (5mm) - Ruido bajo:
+Error medio ruta (5mm) - Ruido medio:
+Error medio ruta (5mm) - Ruido elevado:
+
+

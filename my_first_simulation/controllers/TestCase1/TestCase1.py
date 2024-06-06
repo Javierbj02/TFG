@@ -1,4 +1,4 @@
-"""TestCase_ula8 controller."""
+"""TestCase1 controller."""
 # World: my_first_simulation/worlds/test_world.wbt
 
 from controller import Supervisor
@@ -74,7 +74,7 @@ while robot_controller.step(TIME_STEP) != -1:
 print("Exiting...")
 df_positions = pd.DataFrame(pos_array)
 
-output_path = main_root + "Test Cases/Results/" + ruido + "/" + scenario + " " + num_antennas + "/predicciones_" + scenario + num_antennas + ".csv"
+output_path = main_root + "Test Case 1/Results/" + ruido + "/" + scenario + " " + num_antennas + "/predicciones_" + scenario + num_antennas + ".csv"
 df_positions.to_csv(output_path, index=False)
 
 error_ruta = robot_controller.total_dist(df_positions[["PredictedX", "PredictedY"]].to_numpy(), df_positions[["RoundedX", "RoundedY"]].to_numpy())
@@ -90,7 +90,7 @@ rmse_x = mean_squared_error(df_positions["RoundedX"], df_positions["PredictedX"]
 rmse_y = mean_squared_error(df_positions["RoundedY"], df_positions["PredictedY"], squared=False)
 
 # Guardar en un txt el error de la ruta para ese caso de prueba (ruido, escenario, antena)
-txt_path = main_root + "Test Cases/Results/" + ruido + "/" + scenario + " " + num_antennas + "/error_ruta_" + scenario + num_antennas + ".txt"
+txt_path = main_root + "Test Case 1/Results/" + ruido + "/" + scenario + " " + num_antennas + "/error_ruta_" + scenario + num_antennas + ".txt"
 with open(txt_path, "w") as f:
     f.write(f"------------------------------------\n")
     f.write(f"Error ruta para el caso de prueba: {ruido}, {scenario}, {num_antennas}: {error_ruta} mm\n")
@@ -117,7 +117,7 @@ plt.legend()
 # plt.xlim(-1500, 1500)
 # plt.ylim(1500, 4500)
 plt.grid(False)
-plt.savefig(main_root + "Test Cases/Results/" + ruido + "/" + scenario + " " + num_antennas + "/graphic_s_" + scenario + num_antennas + ".png")
+plt.savefig(main_root + "Test Case 1/Results/" + ruido + "/" + scenario + " " + num_antennas + "/graphic_s_" + scenario + num_antennas + ".png")
 
 
 plt.figure()
@@ -130,4 +130,4 @@ plt.legend()
 plt.xlim(-1500, 1500)
 plt.ylim(1500, 4500)
 plt.grid(False)
-plt.savefig(main_root + "Test Cases/Results/" + ruido + "/" + scenario + " " + num_antennas + "/graphic_l_" + scenario + num_antennas + ".png")
+plt.savefig(main_root + "Test Case 1/Results/" + ruido + "/" + scenario + " " + num_antennas + "/graphic_l_" + scenario + num_antennas + ".png")

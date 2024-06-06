@@ -1,0 +1,13 @@
+------------------------------------
+Error ruta para el caso de prueba: Ruido elevado, ULA, 16: 130.6098043474312 mm
+
+Mean Absolute Error (MAE) en X: 57.48333472927121
+Mean Absolute Error (MAE) en Y: 106.33424188098768
+Mean Squared Error (MSE) en X: 5822.609514717006
+Mean Squared Error (MSE) en Y: 17059.679990547633
+Root Mean Squared Error (RMSE) en X: 76.3060254155398
+Root Mean Squared Error (RMSE) en Y: 130.61270991196696
+
+Tiempo de ejecucion: 74.46480703353882 segundos
+------------------------------------
+

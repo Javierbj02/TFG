@@ -71,5 +71,5 @@ while robot_controller.step(TIME_STEP) != -1:
 
 # # Enter here exit cleanup code.
 print("Exiting...")
-np.save(main_root + "Test Cases/Online positions/posiciones_reales_2.npy", position_array)
+np.save(main_root + "Test Case 1/Results/posiciones_reales_2.npy", position_array)
 # print(robot_controller.get_real_position())
