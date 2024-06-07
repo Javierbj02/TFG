@@ -5,6 +5,6 @@ sceneTreePerspectives: 000000ff000000010000000300000022000000c0000000fa010000000
 maximizedDockId: -1
 centralWidgetVisible: 1
 orthographicViewHeight: 1
-textFiles: 3 "../my_first_simulation/controllers/TestCase1/TestCase1.py" "../my_first_simulation/controllers/model_controller_all_scenarios/model_controller_all_scenarios.py" "controllers/TestCase2/TestCase2.py" "controllers/get_position_online/get_position_online.py"
+textFiles: 3 "../my_first_simulation/controllers/TestCase1/TestCase1.py" "../my_first_simulation/controllers/model_controller_all_scenarios/model_controller_all_scenarios.py" "../obstacles/controllers/TestCase2/TestCase2.py" "../obstacles/controllers/get_position_online/get_position_online.py"
 consoles: Console:All:All
 renderingDevicePerspectives: e-puck:camera;1;1;0;0

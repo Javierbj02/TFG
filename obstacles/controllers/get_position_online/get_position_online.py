@@ -1,5 +1,3 @@
-"""TestCase_ula8 controller."""
-
 from controller import Supervisor
 from robot_controller import RobotController
 import numpy as np
@@ -42,8 +40,6 @@ robot_controller.left_motor.setVelocity(leftSpeed)
 robot_controller.right_motor.setVelocity(rightSpeed)
 
 # df = robot_controller.load_dataset(main_root, scenario, num_antennas)
-# ! Probar pasando df como parámetro al método getReading2
-# ! Probar también poniendolo como atributo de la clase RobotController
 
 pos_array = []
 

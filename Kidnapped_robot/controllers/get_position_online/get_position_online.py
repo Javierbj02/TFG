@@ -1,0 +1,70 @@
+from controller import Supervisor
+from robot_controller import RobotController
+import numpy as np
+import pandas as pd
+
+main_root = "C:/Users/javi2/Desktop/TFG - Webots/TFG/"
+scenario = "ULA"
+num_antennas = "8"
+robot_controller = RobotController(Supervisor(), scenario, num_antennas)
+
+# robot_controller.df = robot_controller.load_dataset(main_root, scenario, num_antennas)
+
+print(robot_controller.get_real_position())
+print("------------------------------------")
+
+#robot_controller.df = robot_controller.load_dataset(main_root, scenario, num_antennas)
+
+
+TIME_STEP = 16
+MAX_SPEED = 2
+
+leftSpeed = 0.5 * MAX_SPEED
+rightSpeed = 0.5 * MAX_SPEED
+
+robot_controller.left_motor.setVelocity(leftSpeed)
+robot_controller.right_motor.setVelocity(rightSpeed)
+
+# df = robot_controller.load_dataset(main_root, scenario, num_antennas)
+
+pos_array = []
+
+while robot_controller.step(TIME_STEP) != -1:
+
+
+    print(" ")
+    print("-- -- -- --")
+    # posicion_estimada = robot_controller.getReading2(main_root, robot_controller.get_real_position())
+
+    #results = robot_controller.get_real_position()
+    results = robot_controller.readRoute(main_root, robot_controller.get_real_position())
+
+    if results is not None:
+        new_row = {
+            "RoundedX": results[0],
+            "RoundedY": results[1],
+        }
+
+        pos_array.append(new_row)
+
+    print("-- -- -- --")
+    print(" ")
+
+    # robot_controller.left_motor.setVelocity(leftSpeed)
+    # robot_controller.right_motor.setVelocity(rightSpeed)
+
+    robot_controller.step(TIME_STEP * 10)
+
+
+    if robot_controller.getTime() > 70.0:
+        robot_controller.left_motor.setVelocity(0.0)
+        robot_controller.right_motor.setVelocity(0.0)
+        break
+
+
+# # Enter here exit cleanup code.
+print("Exiting...")
+df_positions = pd.DataFrame(pos_array)
+
+df_positions.to_csv(main_root + "Test Case 3/Results/posiciones_ruta.csv", index=False)
+# print(robot_controller.get_real_position()) 

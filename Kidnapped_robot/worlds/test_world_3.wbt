@@ -1,0 +1,32 @@
+#VRML_SIM R2023b utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/floors/protos/RectangleArena.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/robots/gctronic/e-puck/protos/E-puck.proto"
+
+WorldInfo {
+  basicTimeStep 64
+}
+Viewpoint {
+  orientation 0.5416671523504432 -0.5502918019334558 -0.6354334180615558 4.288075263442956
+  position 0.5029193038837971 0.2429357566762358 13.729306772721321
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+DEF EPUCK E-puck {
+  translation -0.746228 3.3412 -2.95099e-05
+  rotation -9.16303e-09 -2.82818e-08 -1 0
+  controller "TestCase3"
+  supervisor TRUE
+  version "2"
+}
+RectangleArena {
+  translation -0.04 2.592 7.10543e-15
+  name "rectangle arena(4)"
+  floorSize 2.794 2.874
+  floorTileSize 0.01 0.01
+  wallThickness 0.125
+}
