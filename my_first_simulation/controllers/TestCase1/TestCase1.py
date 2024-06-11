@@ -2,7 +2,7 @@
 # World: my_first_simulation/worlds/test_world.wbt
 
 from controller import Supervisor
-from robot_controller import RobotController
+from robot_controller import RobotController, execution_times
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -114,8 +114,8 @@ plt.xlabel('x position [mm]')
 plt.ylabel('y position [mm]')
 # plt.title('Comparación de Ruta Real y Ruta Predicha')
 plt.legend()
-# plt.xlim(-1500, 1500)
-# plt.ylim(1500, 4500)
+plt.xlim(-1400, -300)
+plt.ylim(2900, 4000)
 plt.grid(False)
 plt.savefig(main_root + "Test Case 1/Results/" + ruido + "/" + scenario + " " + num_antennas + "/graphic_s_" + scenario + num_antennas + ".png")
 
@@ -131,3 +131,14 @@ plt.xlim(-1500, 1500)
 plt.ylim(1500, 4500)
 plt.grid(False)
 plt.savefig(main_root + "Test Case 1/Results/" + ruido + "/" + scenario + " " + num_antennas + "/graphic_l_" + scenario + num_antennas + ".png")
+
+# # Execution times
+
+# execution_times = [x for x in execution_times if x < 1]
+
+# plt.figure()
+# plt.boxplot(execution_times, vert=True, patch_artist=True, showfliers=False, showmeans=True, meanline=True, )
+# plt.xlabel('Execution time [s]')
+# plt.title('Execution times of GetReading2')
+# plt.grid(True)
+# plt.savefig(main_root + "Test Case 1/Results/" + ruido + "/" + scenario + " " + num_antennas + "/execution_times_" + scenario + num_antennas + ".png")

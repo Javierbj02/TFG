@@ -26,6 +26,12 @@ robot_controller.left_motor.setVelocity(leftSpeed)
 robot_controller.right_motor.setVelocity(rightSpeed)
 
 # df = robot_controller.load_dataset(main_root, scenario, num_antennas)
+epuck = robot_controller.robot.getFromDef("EPUCK")
+
+translation_field = epuck.getField("translation")
+rotation_field = epuck.getField("rotation")
+
+knpd = True
 
 pos_array = []
 
@@ -54,6 +60,15 @@ while robot_controller.step(TIME_STEP) != -1:
     # robot_controller.right_motor.setVelocity(rightSpeed)
 
     robot_controller.step(TIME_STEP * 10)
+
+    if (robot_controller.getTime() > 35.0) & knpd:
+        new_translation = [-0.513653, 3.7385, -2.95099e-05]
+        translation_field.setSFVec3f(new_translation)
+
+        new_rotation = [-1.09075e-09, 9.30002e-10, 1, -2.32828]
+        rotation_field.setSFRotation(new_rotation)
+
+        knpd = False
 
 
     if robot_controller.getTime() > 70.0:

@@ -1,13 +1,13 @@
 ------------------------------------
-Error ruta para el caso de prueba: Ruido elevado, ULA, 64: 43.65039747249358 mm
+Error ruta para el caso de prueba: Ruido elevado, ULA, 64: 39.59817440208112 mm
 
-Mean Absolute Error (MAE) en X: 20.172404319728347
-Mean Absolute Error (MAE) en Y: 34.728050754494866
-Mean Squared Error (MSE) en X: 665.1975215378304
-Mean Squared Error (MSE) en Y: 1916.1832497226048
-Root Mean Squared Error (RMSE) en X: 25.791423410464
-Root Mean Squared Error (RMSE) en Y: 43.774230429815724
+Mean Absolute Error (MAE) en X: 20.201821786385995
+Mean Absolute Error (MAE) en Y: 29.16223370587384
+Mean Squared Error (MSE) en X: 641.3642502131147
+Mean Squared Error (MSE) en Y: 1401.7106732350808
+Root Mean Squared Error (RMSE) en X: 25.325170289913448
+Root Mean Squared Error (RMSE) en Y: 37.43942672150685
 
-Tiempo de ejecucion: 77.72333979606628 segundos
+Tiempo de ejecucion: 67.4560718536377 segundos
 ------------------------------------
 

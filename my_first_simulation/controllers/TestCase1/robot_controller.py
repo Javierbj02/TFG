@@ -13,6 +13,7 @@ import pickle
 
 TIME_STEP = 16
 MAX_SPEED = 2
+execution_times = []
 cachedir = './cache'
 memory = Memory(location=cachedir, verbose=0)
 
@@ -109,6 +110,16 @@ class RobotController:
             print("TIEMPO DE EJECUCIÓN", time.time() - start)
             return c
         return function
+
+    def time_decorator(func): # Medir los tiempos de ejecución para hacer un boxplot
+        def wrapper(*args, **kwargs):
+            start = time.time()
+            result = func(*args, **kwargs)
+            elapsed_time = time.time() - start
+            execution_times.append(elapsed_time)
+            print("TIEMPO DE EJECUCIÓN: ", elapsed_time)
+            return result
+        return wrapper
     
     def true_dist(self, x_pred, x_true):
         uno = x_pred[0] - x_true[0]
@@ -128,7 +139,7 @@ class RobotController:
     @time
     def getReading2(self, folder, real_position):
         """
-        Reads a dataset file, obtains the data of the position and applies a noise.
+        Reads a dataset file, obtains the data of the position and applies a noise.s
         With that data, the model predicts the position of the robot.
 
         ! Args:

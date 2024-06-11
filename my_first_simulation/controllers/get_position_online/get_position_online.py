@@ -3,6 +3,7 @@
 from controller import Supervisor
 from robot_controller import RobotController
 import numpy as np
+import time
 
 main_root = "C:/Users/javi2/Desktop/TFG - Webots/TFG/"
 scenario = "ULA"
@@ -41,7 +42,7 @@ robot_controller.right_motor.setVelocity(rightSpeed)
 # ! Probar también poniendolo como atributo de la clase RobotController
 
 position_array = []
-
+t = time.time()
 while robot_controller.step(TIME_STEP) != -1:
 
     # robot_controller.left_motor.setVelocity(0)
@@ -66,10 +67,11 @@ while robot_controller.step(TIME_STEP) != -1:
     if robot_controller.getTime() > 70.0:
         robot_controller.left_motor.setVelocity(0.0)
         robot_controller.right_motor.setVelocity(0.0)
+        print("Tiempo de ejecución: ", time.time() - t)
         break
 
-
+print(len(position_array))
 # # Enter here exit cleanup code.
-print("Exiting...")
-np.save(main_root + "Test Case 1/Results/posiciones_reales_2.npy", position_array)
-# print(robot_controller.get_real_position())
+# print("Exiting...")
+# np.save(main_root + "Test Case 1/Results/posiciones_reales_2.npy", position_array)
+# # print(robot_controller.get_real_position())

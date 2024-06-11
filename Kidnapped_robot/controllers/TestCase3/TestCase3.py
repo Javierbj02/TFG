@@ -39,6 +39,13 @@ rightSpeed = 0.5 * MAX_SPEED
 robot_controller.left_motor.setVelocity(leftSpeed)
 robot_controller.right_motor.setVelocity(rightSpeed)
 
+epuck = robot_controller.robot.getFromDef("EPUCK")
+
+translation_field = epuck.getField("translation")
+rotation_field = epuck.getField("rotation")
+
+knpd = True
+
 pos_array = []
 
 t = time.time()
@@ -63,6 +70,15 @@ while robot_controller.step(TIME_STEP) != -1:
 
     robot_controller.step(TIME_STEP * 10)
 
+
+    if (robot_controller.getTime() > 35.0) & knpd:
+        new_translation = [-0.513653, 3.7385, -2.95099e-05]
+        translation_field.setSFVec3f(new_translation)
+
+        new_rotation = [-1.09075e-09, 9.30002e-10, 1, -2.32828]
+        rotation_field.setSFRotation(new_rotation)
+
+        knpd = False
 
     if robot_controller.getTime() > 70.0:
         robot_controller.left_motor.setVelocity(0.0)
@@ -114,8 +130,8 @@ plt.xlabel('x position [mm]')
 plt.ylabel('y position [mm]')
 # plt.title('Comparación de Ruta Real y Ruta Predicha')
 plt.legend()
-# plt.xlim(-1500, 1500)
-# plt.ylim(1500, 4500)
+plt.xlim(-1250, -450)
+plt.ylim(3100, 3900)
 plt.grid(False)
 plt.savefig(main_root + "Test Case 3/Results/" + ruido + "/" + scenario + " " + num_antennas + "/graphic_s_" + scenario + num_antennas + ".png")
 

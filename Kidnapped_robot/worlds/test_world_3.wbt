@@ -9,24 +9,24 @@ WorldInfo {
   basicTimeStep 64
 }
 Viewpoint {
-  orientation 0.5416671523504432 -0.5502918019334558 -0.6354334180615558 4.288075263442956
-  position 0.5029193038837971 0.2429357566762358 13.729306772721321
+  orientation -0.5848200519438466 0.5852859453477203 0.561627874150511 2.117459104304106
+  position -0.40027436044373144 3.71444384969291 5.201342386558326
 }
 TexturedBackground {
 }
 TexturedBackgroundLight {
 }
 DEF EPUCK E-puck {
-  translation -0.746228 3.3412 -2.95099e-05
-  rotation -9.16303e-09 -2.82818e-08 -1 0
+  translation -1.18573 3.7385 -2.95099e-05
+  rotation 2.82339e-10 -3.54932e-09 -1 0.7574763061004254
   controller "TestCase3"
   supervisor TRUE
   version "2"
 }
 RectangleArena {
-  translation -0.04 2.592 7.10543e-15
+  translation -0.812 3.404 7.10543e-15
   name "rectangle arena(4)"
-  floorSize 2.794 2.874
+  floorSize 1.25 1.25
   floorTileSize 0.01 0.01
   wallThickness 0.125
 }

@@ -103,5 +103,5 @@ while robot_controller.step(TIME_STEP) != -1:
 print("Exiting...")
 df_positions = pd.DataFrame(pos_array)
 
-df_positions.to_csv(main_root + "Test Case 2/Results/posiciones_ruta.csv", index=False)
+df_positions.to_csv(main_root + "Test Case 2/Results/posiciones_ruta_2.csv", index=False)
 # print(robot_controller.get_real_position())

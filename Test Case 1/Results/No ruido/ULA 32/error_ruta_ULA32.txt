@@ -8,6 +8,6 @@ Mean Squared Error (MSE) en Y: 9562.281836005459
 Root Mean Squared Error (RMSE) en X: 30.35422739345085
 Root Mean Squared Error (RMSE) en Y: 97.78692057737302
 
-Tiempo de ejecucion: 74.4953761100769 segundos
+Tiempo de ejecucion: 74.81771183013916 segundos
 ------------------------------------
 
