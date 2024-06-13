@@ -6,11 +6,11 @@ EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/project
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/robots/gctronic/e-puck/protos/E-puck.proto"
 
 WorldInfo {
-  basicTimeStep 64
+  basicTimeStep 86
 }
 Viewpoint {
-  orientation -0.47717243671949483 0.25194731590273345 0.8419198392035836 2.3049941814313
-  position 2.146135721484015 0.2840878016840916 7.245852430835563
+  orientation -0.5553391839878657 0.5613674071886342 0.6135674574763573 2.0312722086331596
+  position -0.15669933470108732 2.7206907370083377 7.105571806879285
 }
 TexturedBackground {
 }

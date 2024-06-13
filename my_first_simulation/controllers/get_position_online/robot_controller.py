@@ -251,3 +251,27 @@ class RobotController:
         # error_test = self.true_dist([predictionX[0][0], predictionY[0][0]], [position[0], position[1]])
         # print("Error test: ", error_test)
         # print("T10 - Tiempo de predicción +  cálculo del error con imagen vacía: ", time.time() - t10)
+
+    @time
+    def readRoute(self, folder, real_position):
+        """
+        Reads a dataset file, obtains the data of the position and applies a noise.
+        With that data, the model predicts the position of the robot.
+
+        ! Args:
+            * folder (str): The main folder where all the needed data is located.
+            * real_position (list): The real position of the robot. Example: [-758.0246871437575, 1798.9217383115995]
+
+        ! Returns:
+            ? float: The predicted position of the robot.
+
+        """
+        # Read the dataset (the .csv format that we have generated with the measurements of the antennas in numpy) 
+        # df = self.load_dataset(folder, self.scenario, self.num_antennas)
+        
+        #df = self.df
+        
+        # Obtain the adjusted/normalized/rounded position with respect to the nearest position of the measurements
+        position = self.round_position(real_position) # Example: [-756.6850000000001, 1803.5]
+
+        return position

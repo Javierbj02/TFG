@@ -33,8 +33,8 @@ TIME_STEP = 16
 MAX_SPEED = 2
 
 
-leftSpeed = 0.5 * MAX_SPEED
-rightSpeed = 0.5 * MAX_SPEED
+leftSpeed = 1.5 * MAX_SPEED
+rightSpeed = 1.5 * MAX_SPEED
 
 robot_controller.left_motor.setVelocity(leftSpeed)
 robot_controller.right_motor.setVelocity(rightSpeed)
@@ -44,7 +44,6 @@ pos_array = []
 t = time.time()
 while robot_controller.step(TIME_STEP) != -1:
 
-    
     print(" ")
     print("-- -- -- --")
     results = robot_controller.getReading2(main_root, robot_controller.get_real_position())
@@ -61,10 +60,10 @@ while robot_controller.step(TIME_STEP) != -1:
 
         pos_array.append(new_row)
 
-    robot_controller.step(TIME_STEP * 10)
+    # robot_controller.step(TIME_STEP * 10)
 
 
-    if robot_controller.getTime() > 70.0:
+    if robot_controller.getTime() > 24.0:
         robot_controller.left_motor.setVelocity(0.0)
         robot_controller.right_motor.setVelocity(0.0)
         tiempo = time.time() - t
@@ -114,7 +113,7 @@ plt.xlabel('x position [mm]')
 plt.ylabel('y position [mm]')
 # plt.title('Comparación de Ruta Real y Ruta Predicha')
 plt.legend()
-plt.xlim(-1400, -300)
+plt.xlim(-1400, -250)
 plt.ylim(2900, 4000)
 plt.grid(False)
 plt.savefig(main_root + "Test Case 1/Results/" + ruido + "/" + scenario + " " + num_antennas + "/graphic_s_" + scenario + num_antennas + ".png")

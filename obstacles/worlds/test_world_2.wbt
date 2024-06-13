@@ -7,11 +7,11 @@ EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/project
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/factory/containers/protos/WoodenBox.proto"
 
 WorldInfo {
-  basicTimeStep 64
+  basicTimeStep 86
 }
 Viewpoint {
-  orientation -0.5510959273724204 0.5570780898976342 0.6212546020670874 2.0200876147529527
-  position -0.04767146433092351 2.679000752912707 5.991543435356409
+  orientation -0.5527970669246133 0.5532374494086001 0.6231723095351811 2.026309766589707
+  position 0.011559196448539966 2.700408628008294 5.5408924393117385
 }
 TexturedBackground {
 }
@@ -47,7 +47,8 @@ WoodenBox {
   size 0.05 0.05 0.05
 }
 WoodenBox {
-  translation -0.796806 3.0614 0.025
+  translation -0.796524 3.04482 0.025
+  rotation 0 0 1 0.523599
   name "wooden box(10)"
   size 0.05 0.05 0.05
 }

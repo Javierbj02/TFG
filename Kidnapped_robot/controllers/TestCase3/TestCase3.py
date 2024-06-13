@@ -18,7 +18,7 @@ noises = ["No ruido", "Ruido bajo", "Ruido medio", "Ruido elevado"]
 
 # !! Change the scenario, num_antennas and noise to test different cases
 scenario = scenarios[0]
-num_antennas = nums_antennas[3]
+num_antennas = nums_antennas[2]
 ruido = noises[3]
 
 robot_controller = RobotController(Supervisor(), scenario, num_antennas)
@@ -32,13 +32,27 @@ print("------------------------------------")
 TIME_STEP = 16
 MAX_SPEED = 2
 
+epuck = robot_controller.robot.getFromDef("EPUCK")
 
-leftSpeed = 0.5 * MAX_SPEED
-rightSpeed = 0.5 * MAX_SPEED
+distance_sensors = []
+
+sensor_names = [
+    'ps0', 'ps1', 'ps2', 'ps3',
+    'ps4', 'ps5', 'ps6', 'ps7'
+]
+
+for i in range(8):
+    distance_sensors.append(robot_controller.robot.getDevice(sensor_names[i]))
+    distance_sensors[i].enable(TIME_STEP)
+
+
+leftSpeed = 1.5 * MAX_SPEED
+rightSpeed = 1.5 * MAX_SPEED
 
 robot_controller.left_motor.setVelocity(leftSpeed)
 robot_controller.right_motor.setVelocity(rightSpeed)
 
+# df = robot_controller.load_dataset(main_root, scenario, num_antennas)
 epuck = robot_controller.robot.getFromDef("EPUCK")
 
 translation_field = epuck.getField("translation")
@@ -51,7 +65,26 @@ pos_array = []
 t = time.time()
 while robot_controller.step(TIME_STEP) != -1:
 
-    
+    sensor_values = [sensor.getValue() for sensor in distance_sensors]
+
+    # Detect Obstacles
+
+    right_osbtacle = any(value > 80 for value in sensor_values[:3])
+    left_obstacle = any(value > 80 for value in sensor_values[5:])
+
+    leftSpeed = 1.5 * MAX_SPEED
+    rightSpeed = 1.5 * MAX_SPEED
+
+    if left_obstacle:
+        leftSpeed = 0.5 * MAX_SPEED
+        rightSpeed = -0.5 * MAX_SPEED
+    elif right_osbtacle:
+        leftSpeed = -0.5 * MAX_SPEED
+        rightSpeed = 0.5 * MAX_SPEED
+
+    robot_controller.left_motor.setVelocity(leftSpeed)
+    robot_controller.right_motor.setVelocity(rightSpeed)
+
     print(" ")
     print("-- -- -- --")
     results = robot_controller.getReading2(main_root, robot_controller.get_real_position())
@@ -68,10 +101,10 @@ while robot_controller.step(TIME_STEP) != -1:
 
         pos_array.append(new_row)
 
-    robot_controller.step(TIME_STEP * 10)
+    # robot_controller.step(TIME_STEP * 10)
 
 
-    if (robot_controller.getTime() > 35.0) & knpd:
+    if (robot_controller.getTime() > 20.0) & knpd:
         new_translation = [-0.513653, 3.7385, -2.95099e-05]
         translation_field.setSFVec3f(new_translation)
 
@@ -80,7 +113,7 @@ while robot_controller.step(TIME_STEP) != -1:
 
         knpd = False
 
-    if robot_controller.getTime() > 70.0:
+    if robot_controller.getTime() > 40.0:
         robot_controller.left_motor.setVelocity(0.0)
         robot_controller.right_motor.setVelocity(0.0)
         tiempo = time.time() - t
@@ -131,7 +164,7 @@ plt.ylabel('y position [mm]')
 # plt.title('Comparación de Ruta Real y Ruta Predicha')
 plt.legend()
 plt.xlim(-1250, -450)
-plt.ylim(3100, 3900)
+plt.ylim(2900, 3900)
 plt.grid(False)
 plt.savefig(main_root + "Test Case 3/Results/" + ruido + "/" + scenario + " " + num_antennas + "/graphic_s_" + scenario + num_antennas + ".png")
 

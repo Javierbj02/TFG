@@ -155,7 +155,8 @@ class RobotController:
             print("No hay datos para esa posición")
             return None
         
-        mean_data = mean_data.iloc[[0]]
+        mean_data = mean_data.sample(n=1) # Seleccionar un solo dato aleatorio
+        mean_data = mean_data.iloc[[0]] # Seleccionar el primer dato
 
         
         

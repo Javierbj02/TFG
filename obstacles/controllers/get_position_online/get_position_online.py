@@ -33,8 +33,8 @@ for i in range(8):
     distance_sensors[i].enable(TIME_STEP)
 
 
-leftSpeed = 0.5 * MAX_SPEED
-rightSpeed = 0.5 * MAX_SPEED
+leftSpeed = 1.5 * MAX_SPEED
+rightSpeed = 1.5 * MAX_SPEED
 
 robot_controller.left_motor.setVelocity(leftSpeed)
 robot_controller.right_motor.setVelocity(rightSpeed)
@@ -55,8 +55,8 @@ while robot_controller.step(TIME_STEP) != -1:
     right_osbtacle = any(value > 80 for value in sensor_values[:3])
     left_obstacle = any(value > 80 for value in sensor_values[5:])
 
-    leftSpeed = 0.5 * MAX_SPEED
-    rightSpeed = 0.5 * MAX_SPEED
+    leftSpeed = 1.5 * MAX_SPEED
+    rightSpeed = 1.5 * MAX_SPEED
 
     if left_obstacle:
         leftSpeed = 0.5 * MAX_SPEED
@@ -90,10 +90,10 @@ while robot_controller.step(TIME_STEP) != -1:
     # robot_controller.left_motor.setVelocity(leftSpeed)
     # robot_controller.right_motor.setVelocity(rightSpeed)
 
-    robot_controller.step(TIME_STEP * 10)
+    # robot_controller.step(TIME_STEP * 10)
 
 
-    if robot_controller.getTime() > 70.0:
+    if robot_controller.getTime() > 40.0:
         robot_controller.left_motor.setVelocity(0.0)
         robot_controller.right_motor.setVelocity(0.0)
         break
@@ -103,5 +103,5 @@ while robot_controller.step(TIME_STEP) != -1:
 print("Exiting...")
 df_positions = pd.DataFrame(pos_array)
 
-df_positions.to_csv(main_root + "Test Case 2/Results/posiciones_ruta_2.csv", index=False)
+df_positions.to_csv(main_root + "Test Case 2/Results/posiciones_ruta.csv", index=False)
 # print(robot_controller.get_real_position())

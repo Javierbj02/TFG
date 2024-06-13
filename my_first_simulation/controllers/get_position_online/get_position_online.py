@@ -3,7 +3,7 @@
 from controller import Supervisor
 from robot_controller import RobotController
 import numpy as np
-import time
+import pandas as pd
 
 main_root = "C:/Users/javi2/Desktop/TFG - Webots/TFG/"
 scenario = "ULA"
@@ -31,8 +31,11 @@ MAX_SPEED = 2
 # Main loop:
 # - perform simulation steps until Webots is stopping the controller
 
-leftSpeed = 0.5 * MAX_SPEED
-rightSpeed = 0.5 * MAX_SPEED
+# leftSpeed = 0.5 * MAX_SPEED
+# rightSpeed = 0.5 * MAX_SPEED
+
+leftSpeed = 1.5 * MAX_SPEED
+rightSpeed = 1.5 * MAX_SPEED
 
 robot_controller.left_motor.setVelocity(leftSpeed)
 robot_controller.right_motor.setVelocity(rightSpeed)
@@ -41,8 +44,8 @@ robot_controller.right_motor.setVelocity(rightSpeed)
 # ! Probar pasando df como parámetro al método getReading2
 # ! Probar también poniendolo como atributo de la clase RobotController
 
-position_array = []
-t = time.time()
+pos_array = []
+
 while robot_controller.step(TIME_STEP) != -1:
 
     # robot_controller.left_motor.setVelocity(0)
@@ -50,28 +53,32 @@ while robot_controller.step(TIME_STEP) != -1:
     
     print(" ")
     print("-- -- -- --")
-    # posicion_estimada = robot_controller.getReading2(main_root, robot_controller.get_real_position())
-    # Quiero ir leyendo la posición actual del robot, y guardar cada lectura en un .npy
-    pos = robot_controller.get_real_position()
-    position_array.append(pos)
-    print(pos)
+
+    results = robot_controller.readRoute(main_root, robot_controller.get_real_position())
+
+    if results is not None:
+        new_row = {
+            "RoundedX": results[0],
+            "RoundedY": results[1],
+        }
+
+        pos_array.append(new_row)
+
     print("-- -- -- --")
     print(" ")
 
-    # robot_controller.left_motor.setVelocity(leftSpeed)
-    # robot_controller.right_motor.setVelocity(rightSpeed)
-
-    robot_controller.step(TIME_STEP * 10)
+    #robot_controller.step(1)
 
 
-    if robot_controller.getTime() > 70.0:
+    if robot_controller.getTime() > 24.0:
         robot_controller.left_motor.setVelocity(0.0)
         robot_controller.right_motor.setVelocity(0.0)
-        print("Tiempo de ejecución: ", time.time() - t)
         break
 
-print(len(position_array))
-# # Enter here exit cleanup code.
-# print("Exiting...")
-# np.save(main_root + "Test Case 1/Results/posiciones_reales_2.npy", position_array)
-# # print(robot_controller.get_real_position())
+
+print("Exiting...")
+
+df_positions = pd.DataFrame(pos_array)
+
+df_positions.to_csv(main_root + "Test Case 1/Results/posiciones_ruta.csv", index=False)
+
