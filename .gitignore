@@ -1,63 +1,9 @@
 /Data/DIS
 /Data/ULA
 /Data/URA
-/my_first_simulation/controllers/model_controller/cache
-/my_first_simulation/controllers/model_controller/__pycache__
-/my_first_simulation/controllers/model_controller_ula8/cache
-/my_first_simulation/controllers/model_controller_ula8/__pycache__
-/my_first_simulation/controllers/model_controller_ula16/cache
-/my_first_simulation/controllers/model_controller_ula16/__pycache__
-/my_first_simulation/controllers/model_controller_ula32/cache
-/my_first_simulation/controllers/model_controller_ula32/__pycache__
-/my_first_simulation/controllers/model_controller_ula64/cache
-/my_first_simulation/controllers/model_controller_ula64/__pycache__
-/my_first_simulation/controllers/model_controller_ura8/cache
-/my_first_simulation/controllers/model_controller_ura8/__pycache__
-/my_first_simulation/controllers/model_controller_ura16/cache
-/my_first_simulation/controllers/model_controller_ura16/__pycache__
-/my_first_simulation/controllers/model_controller_ura32/cache
-/my_first_simulation/controllers/model_controller_ura32/__pycache__
-/my_first_simulation/controllers/model_controller_ura64/cache
-/my_first_simulation/controllers/model_controller_ura64/__pycache__
-/my_first_simulation/controllers/model_controller_dis8/cache
-/my_first_simulation/controllers/model_controller_dis8/__pycache__
-/my_first_simulation/controllers/model_controller_dis16/cache
-/my_first_simulation/controllers/model_controller_dis16/__pycache__
-/my_first_simulation/controllers/model_controller_dis32/cache
-/my_first_simulation/controllers/model_controller_dis32/__pycache__
-/my_first_simulation/controllers/model_controller_dis64/cache
-/my_first_simulation/controllers/model_controller_dis64/__pycache__
-/Models/ULA/ULA 8/modelX.h5
-/Models/ULA/ULA 16/modelX.h5
-/Models/ULA/ULA 32/modelX.h5
-/Models/ULA/ULA 8/modelY.h5
-/Models/ULA/ULA 16/modelY.h5
-/Models/ULA/ULA 32/modelY.h5
-/Models/ULA/ULA 64/modelX.h5
-/Models/ULA/ULA 64/modelY.h5
-/Models/URA/URA 8/modelX.h5
-/Models/URA/URA 16/modelX.h5
-/Models/URA/URA 32/modelX.h5
-/Models/URA/URA 8/modelY.h5
-/Models/URA/URA 16/modelY.h5
-/Models/URA/URA 32/modelY.h5
-/Models/URA/URA 64/modelX.h5
-/Models/URA/URA 64/modelY.h5
-/Models/DIS/DIS 8/modelX.h5
-/Models/DIS/DIS 16/modelX.h5
-/Models/DIS/DIS 32/modelX.h5
-/Models/DIS/DIS 8/modelY.h5
-/Models/DIS/DIS 16/modelY.h5
-/Models/DIS/DIS 32/modelY.h5
-/Models/DIS/DIS 64/modelX.h5
-/Models/DIS/DIS 64/modelY.h5
 /my_first_simulation/controllers/model_controller
-/Pruebas
 *.h5
 *__pycache__
 *cache
-*z_Orig
-*z_Extra
-*ULA_32.csv
-*ULA_64.csv
-*ULA_64 copy.csv
+/Data/Test Case 2/*/ULA_64.CSV
+/Data/Test Case 3/*/ULA_64.CSV
