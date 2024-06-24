@@ -5,5 +5,10 @@
 *.h5
 *__pycache__
 *cache
-/Data/Test Case 2/*/ULA_64.CSV
-/Data/Test Case 3/*/ULA_64.CSV
+/Data/Test Case 2/Ruido bajo/ULA_64.CSV
+/Data/Test Case 2/Ruido medio/ULA_64.CSV
+/Data/Test Case 2/Ruido elevado/ULA_64.CSV
+/Data/Test Case 3/No ruido/ULA_64.CSV
+/Data/Test Case 3/Ruido bajo/ULA_64.CSV
+/Data/Test Case 3/Ruido medio/ULA_64.CSV
+/Data/Test Case 3/Ruido elevado/ULA_64.CSV
