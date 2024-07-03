@@ -1,5 +1,5 @@
 from controller import Supervisor
-from robot_controller import RobotController
+from TFG.robot_controller import RobotController
 import numpy as np
 import pandas as pd
 

@@ -1,8 +1,8 @@
-"""TestCase1 controller."""
+"""TestCase2 controller."""
 # World: obstacles/worlds/test_world_2.wbt
 
 from controller import Supervisor
-from robot_controller import RobotController
+from TFG.robot_controller import RobotController
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt

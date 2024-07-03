@@ -10,7 +10,7 @@ import time
 from sklearn.metrics import mean_absolute_error
 from sklearn.metrics import mean_squared_error
 
-main_root = "C:/Users/javi2/Desktop/TFG - Webots/TFG/"
+main_root = "/home/javi2002bj/Escritorio/TFG_Webots/TFG/"
 
 scenarios = ["ULA", "URA", "DIS"]
 nums_antennas = ["8", "16", "32", "64"]
@@ -18,8 +18,8 @@ noises = ["No ruido", "Ruido bajo", "Ruido medio", "Ruido elevado"]
 
 # !! Change the scenario, num_antennas and noise to test different cases
 scenario = scenarios[0]
-num_antennas = nums_antennas[2]
-ruido = noises[3]
+num_antennas = nums_antennas[0]
+ruido = noises[0]
 
 robot_controller = RobotController(Supervisor(), scenario, num_antennas)
 
@@ -123,7 +123,7 @@ while robot_controller.step(TIME_STEP) != -1:
 print("Exiting...")
 df_positions = pd.DataFrame(pos_array)
 
-output_path = main_root + "Test Case 3/Results/" + ruido + "/" + scenario + " " + num_antennas + "/predicciones_" + scenario + num_antennas + ".csv"
+output_path = main_root + "Test Case 3/Results_test/" + ruido + "/" + scenario + " " + num_antennas + "/predicciones_" + scenario + num_antennas + ".csv"
 df_positions.to_csv(output_path, index=False)
 
 error_ruta = robot_controller.total_dist(df_positions[["PredictedX", "PredictedY"]].to_numpy(), df_positions[["RoundedX", "RoundedY"]].to_numpy())
@@ -139,7 +139,7 @@ rmse_x = mean_squared_error(df_positions["RoundedX"], df_positions["PredictedX"]
 rmse_y = mean_squared_error(df_positions["RoundedY"], df_positions["PredictedY"], squared=False)
 
 # Guardar en un txt el error de la ruta para ese caso de prueba (ruido, escenario, antena) 
-txt_path = main_root + "Test Case 3/Results/" + ruido + "/" + scenario + " " + num_antennas + "/error_ruta_" + scenario + num_antennas + ".txt"
+txt_path = main_root + "Test Case 3/Results_test/" + ruido + "/" + scenario + " " + num_antennas + "/error_ruta_" + scenario + num_antennas + ".txt"
 with open(txt_path, "w") as f:
     f.write(f"------------------------------------\n")
     f.write(f"Error ruta para el caso de prueba: {ruido}, {scenario}, {num_antennas}: {error_ruta} mm\n")
@@ -155,6 +155,8 @@ with open(txt_path, "w") as f:
     f.write(f"------------------------------------\n")
     f.write("\n")
 
+import matplotlib
+matplotlib.use('Agg')
 
 plt.figure()
 plt.scatter(df_positions["RoundedX"], df_positions["RoundedY"], label='Ground truth', s=3, alpha=0.7, c = 'blue')
@@ -166,7 +168,7 @@ plt.legend()
 plt.xlim(-1250, -450)
 plt.ylim(2900, 3900)
 plt.grid(False)
-plt.savefig(main_root + "Test Case 3/Results/" + ruido + "/" + scenario + " " + num_antennas + "/graphic_s_" + scenario + num_antennas + ".png")
+plt.savefig(main_root + "Test Case 3/Results_test/" + ruido + "/" + scenario + " " + num_antennas + "/graphic_s_" + scenario + num_antennas + ".png")
 
 
 plt.figure()
@@ -179,4 +181,4 @@ plt.legend()
 plt.xlim(-1500, 1500)
 plt.ylim(1500, 4500)
 plt.grid(False)
-plt.savefig(main_root + "Test Case 3/Results/" + ruido + "/" + scenario + " " + num_antennas + "/graphic_l_" + scenario + num_antennas + ".png")
+plt.savefig(main_root + "Test Case 3/Results_test/" + ruido + "/" + scenario + " " + num_antennas + "/graphic_l_" + scenario + num_antennas + ".png")

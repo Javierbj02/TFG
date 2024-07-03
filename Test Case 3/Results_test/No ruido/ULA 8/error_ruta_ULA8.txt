@@ -1,0 +1,13 @@
+------------------------------------
+Error ruta para el caso de prueba: No ruido, ULA, 8: 166.05663516716524 mm
+
+Mean Absolute Error (MAE) en X: 67.47164202408052
+Mean Absolute Error (MAE) en Y: 130.21938614106514
+Mean Squared Error (MSE) en X: 15188.76994267872
+Mean Squared Error (MSE) en Y: 26993.127075693978
+Root Mean Squared Error (RMSE) en X: 123.24272774763921
+Root Mean Squared Error (RMSE) en Y: 164.29585227781612
+
+Tiempo de ejecucion: 49.63678288459778 segundos
+------------------------------------
+

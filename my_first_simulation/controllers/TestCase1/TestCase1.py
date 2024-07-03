@@ -2,7 +2,7 @@
 # World: my_first_simulation/worlds/test_world.wbt
 
 from controller import Supervisor
-from robot_controller import RobotController, execution_times
+from TFG.robot_controller import RobotController, execution_times
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt

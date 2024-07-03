@@ -1,0 +1,13 @@
+------------------------------------
+Average error of the path: Ruido elevado, ULA, 32: 81.40748058484773 mm
+
+Mean Absolute Error (MAE) in X: 28.04109029300877
+Mean Absolute Error (MAE) in Y: 71.34848872950819
+Mean Squared Error (MSE) in X: 1165.415256889014
+Mean Squared Error (MSE) in Y: 8506.505188805158
+Root Mean Squared Error (RMSE) in X: 34.13817887481718
+Root Mean Squared Error (RMSE) in Y: 92.23071716518938
+
+Execution time: 55.234626054763794 seconds
+------------------------------------
+

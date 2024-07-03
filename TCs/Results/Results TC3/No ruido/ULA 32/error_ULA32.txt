@@ -1,0 +1,13 @@
+------------------------------------
+Average error of the path: No ruido, ULA, 32: 61.81293519550982 mm
+
+Mean Absolute Error (MAE) in X: 21.834163728307505
+Mean Absolute Error (MAE) in Y: 54.62567839075307
+Mean Squared Error (MSE) in X: 684.7445079223863
+Mean Squared Error (MSE) in Y: 4654.767720851742
+Root Mean Squared Error (RMSE) in X: 26.16762327614769
+Root Mean Squared Error (RMSE) in Y: 68.22585815401476
+
+Execution time: 54.46796703338623 seconds
+------------------------------------
+

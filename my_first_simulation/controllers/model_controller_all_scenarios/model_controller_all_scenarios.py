@@ -2,7 +2,7 @@
 # World: my_first_simulation/worlds/escenario_segun_datos.wbt
 
 from controller import Supervisor
-from robot_controller import RobotController
+from TFG.robot_controller import RobotController
 
 main_root = "C:/Users/javi2/Desktop/TFG - Webots/TFG/"
 

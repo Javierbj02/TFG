@@ -99,7 +99,7 @@ class RobotController:
     
     @memory.cache
     def load_dataset_testCases(folder, scenario, num_antennas, noise):
-        root = folder + "Data/Test Case 3/" + noise + "/"+ scenario + "_" + num_antennas  + ".csv"
+        root = folder + "Data/TC3/" + noise + "/"+ scenario + "_" + num_antennas  + ".csv"
         df = pd.read_csv(root)
         return df
     

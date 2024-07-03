@@ -1,0 +1,13 @@
+------------------------------------
+Average error of the path: Ruido bajo, ULA, 32: 62.03324149026577 mm
+
+Mean Absolute Error (MAE) in X: 20.341514712474385
+Mean Absolute Error (MAE) in Y: 54.77644623303023
+Mean Squared Error (MSE) in X: 636.3658814456192
+Mean Squared Error (MSE) in Y: 4637.712863901844
+Root Mean Squared Error (RMSE) in X: 25.226293454362636
+Root Mean Squared Error (RMSE) in Y: 68.10075523738223
+
+Execution time: 54.61683917045593 seconds
+------------------------------------
+

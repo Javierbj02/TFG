@@ -1,0 +1,13 @@
+------------------------------------
+Average error of the path: Ruido medio, ULA, 8: 337.4228805557822 mm
+
+Mean Absolute Error (MAE) in X: 126.27267127908686
+Mean Absolute Error (MAE) in Y: 272.85052555863575
+Mean Squared Error (MSE) in X: 69371.39511732836
+Mean Squared Error (MSE) in Y: 161730.7418176285
+Root Mean Squared Error (RMSE) in X: 263.3845005259959
+Root Mean Squared Error (RMSE) in Y: 402.1576081807088
+
+Execution time: 47.59965634346008 seconds
+------------------------------------
+
