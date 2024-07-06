@@ -9,7 +9,7 @@ matplotlib.use('Agg')
 
 class GeneratePlots:
     def __init__(self, scenario, num_antennas, noise, test_case):
-        self.path = "/home/javi2002bj/Escritorio/TFG_Webots/TFG/TCs - Kalman Filter/Results/Results " + test_case + "/" + noise + "/" + scenario + " " + num_antennas
+        self.path = "/home/javi2002bj/Escritorio/TFG_Webots/TFG/TCs - Kalman Filter/Results copy/Results " + test_case + "/" + noise + "/" + scenario + " " + num_antennas
         self.scenario = scenario
         self.num_antennas = num_antennas
         self.noise = noise

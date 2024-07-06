@@ -7,6 +7,10 @@ num_antennas_list = ["8", "16", "32", "64"]
 noise_levels = ["No ruido", "Ruido bajo", "Ruido medio", "Ruido elevado"]
 test_cases = ["TC1", "TC2", "TC3"]
 
+num_antennas_list = ["8"]
+noise_levels = ["No ruido"]
+test_cases = ["TC2", "TC3"]
+
 launch_files = {
     "TC1": "webots_launch_tc1.py",
     "TC2": "webots_launch_tc2.py",
