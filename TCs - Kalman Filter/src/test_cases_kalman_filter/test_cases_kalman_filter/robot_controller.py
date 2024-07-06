@@ -147,8 +147,8 @@ class RobotController(Node):
 
         initial_state = np.array([self.posicion_x_inicial, self.posicion_y_inicial, self.rotation]).reshape(-1 ,1)
         initial_covariance = np.eye(3) # np.eye(3) * 0.1
-        process_noise = np.eye(3) * 0.00001 # Matriz Q
-        measurements_noise = np.eye(2) * 100000
+        process_noise = np.eye(3) * 0.5 # Matriz Q
+        measurements_noise = np.eye(2) * 40
 
         # Mejores resultados: 1, self. MODELO DE MOVIMIENTO ESTÁ MAL IMPLEMENTADO
 
@@ -330,8 +330,16 @@ class RobotController(Node):
 
         delta_t = TIME_STEP / 1000
 
-        v_l = 14.5
-        v_r = 14.5
+        if self.leftSpeed == 3 and self.rightSpeed == 3:
+            v_l = 14.5
+            v_r = 14.5
+        elif self.leftSpeed == 1 and self.rightSpeed == -1:
+            v_l = 14.5/3
+            v_r = -14.5/3
+        else:
+            v_l = -14.5/3
+            v_r = 14.5/3
+
         # v_l = 15.75
         # v_r = 15.75
 
@@ -449,7 +457,7 @@ class RobotController(Node):
 
     
     def save_results(self):
-        results = "/home/javi2002bj/Escritorio/TFG_Webots/TFG/TCs - Kalman Filter/Results copy/Results " + self.scenario.test_case
+        results = "/home/javi2002bj/Escritorio/TFG_Webots/TFG/TCs - Kalman Filter/Results/Results " + self.scenario.test_case
 
         df_positions = pd.DataFrame(self.pos_array)
         output_path = os.path.join(results, self.scenario.noise, self.scenario.config + " " + self.scenario.num_antennas, "predicciones_" + self.scenario.config + self.scenario.num_antennas + ".csv")

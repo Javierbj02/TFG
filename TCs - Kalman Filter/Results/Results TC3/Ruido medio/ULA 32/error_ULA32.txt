@@ -1,19 +1,19 @@
 ------------------------------------
 Test case: TC3. Configuration: ULA. Number of antennas: 32. Noise level: Ruido medio
-Average error of the path (Predicted - Real): 63.63582834227275 mm
-Average error of the path (Predicted - Rounded): 63.715471271456266 mm
+Average error of the path (Predicted - Real): 64.3966712833654 mm
+Average error of the path (Predicted - Rounded): 64.48999354221164 mm
 
-Average error of the path (Kalman - Rounded): 59.154523709015514 mm
-Average error of the path (Kalman - Real): 59.552308766724636 mm
+Average error of the path (Kalman - Rounded): 52.526890968426386 mm
+Average error of the path (Kalman - Real): 52.30924574981903 mm
 
 
-Mean Absolute Error (MAE) in X: 23.29093607918161
-Mean Absolute Error (MAE) in Y: 55.60716872918801
-Mean Squared Error (MSE) in X: 798.5638167100851
-Mean Squared Error (MSE) in Y: 4948.073658614129
-Root Mean Squared Error (RMSE) in X: 28.25887146915257
-Root Mean Squared Error (RMSE) in Y: 70.34254515308733
+Mean Absolute Error (MAE) in X: 23.27374117491675
+Mean Absolute Error (MAE) in Y: 56.38041411853227
+Mean Squared Error (MSE) in X: 805.0292709797133
+Mean Squared Error (MSE) in Y: 4973.745004631701
+Root Mean Squared Error (RMSE) in X: 28.373037746771374
+Root Mean Squared Error (RMSE) in Y: 70.52478291091509
 
-Execution time: 51.752321004867554 seconds
+Execution time: 52.31066846847534 seconds
 ------------------------------------
 
