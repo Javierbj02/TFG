@@ -1,19 +1,19 @@
 ------------------------------------
 Test case: TC2. Configuration: ULA. Number of antennas: 64. Noise level: Ruido medio
-Average error of the path (Predicted - Real): 47.788755299356964 mm
-Average error of the path (Predicted - Rounded): 47.07817959354779 mm
+Average error of the path (Predicted - Real): 48.660454015083324 mm
+Average error of the path (Predicted - Rounded): 47.89445171026899 mm
 
-Average error of the path (Kalman - Rounded): 31.791919594858417 mm
-Average error of the path (Kalman - Real): 32.364787995111094 mm
+Average error of the path (Kalman - Rounded): 50.84128937344708 mm
+Average error of the path (Kalman - Real): 51.37316637018583 mm
 
 
-Mean Absolute Error (MAE) in X: 17.735520935058595
-Mean Absolute Error (MAE) in Y: 40.55843994140625
-Mean Squared Error (MSE) in X: 465.892702952344
-Mean Squared Error (MSE) in Y: 2436.7168684870003
-Root Mean Squared Error (RMSE) in X: 21.584547781974585
-Root Mean Squared Error (RMSE) in Y: 49.36311242706441
+Mean Absolute Error (MAE) in X: 17.738167724609376
+Mean Absolute Error (MAE) in Y: 41.52076293945313
+Mean Squared Error (MSE) in X: 466.80620460890236
+Mean Squared Error (MSE) in Y: 2529.9298840370775
+Root Mean Squared Error (RMSE) in X: 21.605698429092783
+Root Mean Squared Error (RMSE) in Y: 50.29840836484866
 
-Execution time: 56.89198279380798 seconds
+Execution time: 56.874035120010376 seconds
 ------------------------------------
 

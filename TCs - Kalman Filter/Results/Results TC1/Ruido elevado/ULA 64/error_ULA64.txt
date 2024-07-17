@@ -3,8 +3,8 @@ Test case: TC1. Configuration: ULA. Number of antennas: 64. Noise level: Ruido e
 Average error of the path (Predicted - Real): 45.19686705532071 mm
 Average error of the path (Predicted - Rounded): 44.89354772861126 mm
 
-Average error of the path (Kalman - Rounded): 19.27660759004126 mm
-Average error of the path (Kalman - Real): 19.807538502610182 mm
+Average error of the path (Kalman - Rounded): 25.490193183801132 mm
+Average error of the path (Kalman - Real): 25.798187293656003 mm
 
 
 Mean Absolute Error (MAE) in X: 23.120463126046317
@@ -14,6 +14,6 @@ Mean Squared Error (MSE) in Y: 1751.4290233961174
 Root Mean Squared Error (RMSE) in X: 29.911599010396333
 Root Mean Squared Error (RMSE) in Y: 41.8500779377544
 
-Execution time: 25.214612245559692 seconds
+Execution time: 25.30385947227478 seconds
 ------------------------------------
 

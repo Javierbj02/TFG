@@ -105,19 +105,49 @@ class RobotController(Node):
 
             self.posicion_x_inicial = -1.36183
             self.posicion_y_inicial = 3.94731
+            self.rotation = -0.7574763061004254
+
+            if config["noise_level"] == "No ruido":
+                if config["num_antennas"] == "8":
+                    self.measurement_noise_value = 160
+                elif config["num_antennas"] == "16":
+                    self.measurement_noise_value = 128
+                elif config["num_antennas"] == "32":
+                    self.measurement_noise_value = 82
+                elif config["num_antennas"] == "64":
+                    self.measurement_noise_value = 40
 
         elif config["test_case"] == "TC3":
 
             self.posicion_x_inicial = -1.18573
             self.posicion_y_inicial = 3.7385
+            self.rotation = -0.7574763061004254
 
-        initial_state = np.array([self.posicion_x_inicial, self.posicion_y_inicial, 0., 0.]).reshape(-1, 1)
-        initial_covariance = np.array([[0., 0, 0, 0],
-                                      [0, 0., 0, 0],
-                                      [0, 0, 1000., 0],
-                                      [0, 0, 0, 1000.]])
+            if config["noise_level"] == "No ruido":
+                if config["num_antennas"] == "8":
+                    self.measurement_noise_value = 160
+                elif config["num_antennas"] == "16":
+                    self.measurement_noise_value = 128
+                elif config["num_antennas"] == "32":
+                    self.measurement_noise_value = 82
+                elif config["num_antennas"] == "64":
+                    self.measurement_noise_value = 40
+
+        else:
+            self.measurement_noise_value = 100
+
+        # Inicialización del filtro de Kalman
+        # La velocidad del robot es 1.5 * 2 a cada rueda. Cuando el robot detecta un obstáculo, la velocidad de la rueda opuesta se reduce a la mitad.
         
-        process_noise = np.eye(4) * 0.5
+        # Proceso = Modelo de movimiento del robot
+        # Medición = Modelo de la red neuronal. La medición es la posición x e y del robot en el mundo.
+
+        self.distance_between_wheels = 52 / 1000 # mm
+        self.wheel_radius = 20.5 / 1000 # mm
+
+        initial_state = np.array([self.posicion_x_inicial, self.posicion_y_inicial, self.rotation]).reshape(-1 ,1)
+        initial_covariance = np.eye(3) # np.eye(3) * 0.1
+        process_noise = np.eye(3) * 0.5 # Matriz Q
         measurements_noise = np.eye(2) * 40
 
         # Mejores resultados: 1, self. MODELO DE MOVIMIENTO ESTÁ MAL IMPLEMENTADO
@@ -220,8 +250,8 @@ class RobotController(Node):
 
             z = np.array([results[2][0]/1000, results[2][1]/1000]).reshape(-1, 1)
             H = np.array([
-                [1., 0, 0, 0],
-                [0, 1., 0, 0]
+                [1, 0, 0],
+                [0, 1, 0]
             ])
 
             self.kalman_filter.update(z, H)
@@ -277,7 +307,7 @@ class RobotController(Node):
         right_obstacle = any(value > 80 for value in sensor_values[:3])
         left_obstacle = any(value > 80 for value in sensor_values[5:])
 
-        # max_motor_speed = MAX_LINEAR_VELOCITY / self.wheel_radius
+        max_motor_speed = MAX_LINEAR_VELOCITY / self.wheel_radius
 
         self.leftSpeed = 3
         self.rightSpeed = 3
@@ -300,54 +330,47 @@ class RobotController(Node):
 
         delta_t = TIME_STEP / 1000
 
-        # if self.leftSpeed == 3 and self.rightSpeed == 3:
-        #     v_l = 14.5
-        #     v_r = 14.5
-        # elif self.leftSpeed == 1 and self.rightSpeed == -1:
-        #     v_l = 14.5/3
-        #     v_r = -14.5/3
-        # else:
-        #     v_l = -14.5/3
-        #     v_r = 14.5/3
+        if self.leftSpeed == 3 and self.rightSpeed == 3:
+            v_l = 14.5
+            v_r = 14.5
+        elif self.leftSpeed == 1 and self.rightSpeed == -1:
+            v_l = 14.5/3
+            v_r = -14.5/3
+        else:
+            v_l = -14.5/3
+            v_r = 14.5/3
 
         # v_l = 15.75
         # v_r = 15.75
 
-        u = np.array([0, 0]).reshape(-1,1)
+        u = np.array([v_l, v_r]).reshape(-1,1)
         # u = np.array([v_l, v_r]).reshape(-1, 1)
 
         
 
-        # theta = self.kalman_filter.x[2, 0] # [2, 0] because the state is a column vector
+        theta = self.kalman_filter.x[2, 0] # [2, 0] because the state is a column vector
 
 
         # v_l = self.leftSpeed * self.wheel_radius
         # v_r = self.rightSpeed * self.wheel_radius
 
-        # v = (v_l + v_r) * (self.wheel_radius/2) 
+        v = (v_l + v_r) * (self.wheel_radius/2) 
 
-        # F = np.array([
-        #     [1, 0, v * np.sin(theta) * (delta_t/10)], # sin
-        #     [0, 1, v * np.cos(theta) * (delta_t/10)], # cos
-        #     [0, 0, 1]
-        # ])
-
-        F = np.array([ # !! OJO !! -> -> -> -> PROBAR CON DELTA_T/10 Y COMPARAR RESULTADOS
-            [1, 0, delta_t, 0],
-            [0, 1, 0, delta_t],
-            [0, 0, 1, 0],
-            [0, 0, 0, 1]
+        F = np.array([
+            [1, 0, v * np.sin(theta) * (delta_t/10)], # sin
+            [0, 1, v * np.cos(theta) * (delta_t/10)], # cos
+            [0, 0, 1]
         ])
 
-        # B = np.array([
-        #     [self.wheel_radius/2 * np.cos(theta) * delta_t, self.wheel_radius/2 * np.cos(theta) * delta_t],
-        #     [self.wheel_radius/2 * np.sin(theta) * delta_t, self.wheel_radius/2 * np.sin(theta) * delta_t],
-        #     [-delta_t * (self.wheel_radius/self.distance_between_wheels), delta_t * (self.wheel_radius/self.distance_between_wheels)]
-        # ])
+        B = np.array([
+            [self.wheel_radius/2 * np.cos(theta) * delta_t, self.wheel_radius/2 * np.cos(theta) * delta_t],
+            [self.wheel_radius/2 * np.sin(theta) * delta_t, self.wheel_radius/2 * np.sin(theta) * delta_t],
+            [-delta_t * (self.wheel_radius/self.distance_between_wheels), delta_t * (self.wheel_radius/self.distance_between_wheels)]
+        ])
         
         
 
-        B = np.zeros((4, 2))
+        # B = np.zeros((3, 2))
         self.kalman_filter.predict(F, B, u)
 
         self.left_motor.setVelocity(self.leftSpeed)
